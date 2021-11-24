@@ -60,7 +60,7 @@ jobs:
           override: true
 
       - name: Cache dependencies
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -97,7 +97,7 @@ jobs:
           components: rustfmt
 
       - name: Cache dependencies
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -133,7 +133,7 @@ jobs:
           override: true
 
       - name: Cache dependencies
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -225,7 +225,7 @@ jobs:
           components: clippy
 
       - name: Cache dependencies
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
