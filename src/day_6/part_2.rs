@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::utils::read_file;
+use crate::{shared::AoCResult, utils::read_file};
 
 fn count_of_questions_answered_by_everybody(group: &[String]) -> u32 {
     let mut count_of_answers: HashMap<char, u32> = HashMap::new();
@@ -20,7 +20,7 @@ fn count_of_questions_answered_by_everybody(group: &[String]) -> u32 {
     }
 
     let mut total_answers_that_everybody_answered: u32 = 0;
-    let people_in_group: u32 = group.len().try_into().unwrap();
+    let people_in_group = group.len() as u32;
 
     for (_, value) in count_of_answers {
         if value == people_in_group {
@@ -46,14 +46,14 @@ fn parse_lines_into_questionaires(lines: &[String]) -> Vec<u32> {
 }
 
 // https://adventofcode.com/2020/day/6
-pub fn find_solution() -> Result<u32, Box<dyn std::error::Error>> {
+pub fn find_solution() -> Result<AoCResult, Box<dyn std::error::Error>> {
     let split = read_file("./src/day_6/input.txt".into())?;
 
     let answers: u32 = parse_lines_into_questionaires(&split)
         .into_iter()
         .sum::<u32>();
 
-    Ok(answers)
+    Ok(AoCResult::Ofu32(answers))
 }
 
 #[cfg(test)]
@@ -62,7 +62,7 @@ mod tests {
 
     #[test]
     fn outcome() {
-        assert_eq!(3305, find_solution().unwrap());
+        assert_eq!(AoCResult::Ofu32(3305), find_solution().unwrap());
     }
 
     #[test]

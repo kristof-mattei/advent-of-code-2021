@@ -1,6 +1,9 @@
 #![deny(clippy::all)]
 #![warn(clippy::pedantic)]
 #![warn(clippy::cargo)]
+#![allow(clippy::cast_possible_truncation)]
+#![allow(clippy::cast_possible_wrap)]
+#![allow(clippy::cast_sign_loss)]
 use std::fmt;
 
 mod day_1;
@@ -10,7 +13,8 @@ mod day_4;
 mod day_5;
 mod day_6;
 mod day_7;
-mod errors;
+mod day_8;
+mod shared;
 mod utils;
 
 fn print_answer<T: fmt::Display, E: fmt::Display>(day: u32, part: u32, result: &Result<T, E>) {
@@ -56,10 +60,14 @@ fn main() {
             day_7::part_1::find_solution(),
             day_7::part_2::find_solution(),
         ),
+        (
+            day_8::part_1::find_solution(),
+            day_8::part_2::find_solution(),
+        ),
     ];
 
     for (i, (part1, part2)) in days.iter().enumerate() {
-        let day_index: u32 = i.try_into().unwrap();
+        let day_index = i as u32;
 
         print_answer(day_index + 1, 1, part1);
         print_answer(day_index + 1, 2, part2);
