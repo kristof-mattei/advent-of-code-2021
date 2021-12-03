@@ -53,11 +53,12 @@ jobs:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Set up toolchain
-        uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af
-        with:
-          profile: minimal
-          toolchain: 1.56.1
-          override: true
+        shell: bash
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain none --profile minimal -y
+
+          # invoking this actually sets up the toolchain as per rust-toolchain.toml
+          cargo --version
 
       - name: Cache dependencies
         uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
@@ -89,12 +90,12 @@ jobs:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Set up toolchain
-        uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af
-        with:
-          profile: minimal
-          toolchain: 1.56.1
-          override: true
-          components: rustfmt
+        shell: bash
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain none --profile minimal -y
+
+          # invoking this actually sets up the toolchain as per rust-toolchain.toml
+          cargo --version
 
       - name: Cache dependencies
         uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
@@ -126,11 +127,12 @@ jobs:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Set up toolchain
-        uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af
-        with:
-          profile: minimal
-          toolchain: 1.56.1
-          override: true
+        shell: bash
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain none --profile minimal -y
+
+          # invoking this actually sets up the toolchain as per rust-toolchain.toml
+          cargo --version
 
       - name: Cache dependencies
         uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
@@ -155,7 +157,7 @@ jobs:
 
       - name: Run tarpaulin
         run: |
-          cargo tarpaulin --run-types AllTargets --output-dir reports --out Lcov --workspace --all-features -- -Z unstable-options --format json | cargo2junit > reports/result.xml;
+          cargo tarpaulin --run-types AllTargets --output-dir reports --out Lcov --workspace --all-features -- -Z unstable-options --format json --report-time | cargo2junit > reports/result.xml;
         continue-on-error: true
 
       - name: Upload test results
@@ -184,12 +186,12 @@ jobs:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Set up toolchain
-        uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af
-        with:
-          profile: minimal
-          toolchain: 1.56.1
-          override: true
-          components: clippy
+        shell: bash
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain none --profile minimal -y
+
+          # invoking this actually sets up the toolchain as per rust-toolchain.toml
+          cargo --version
 
       - name: Cache dependencies
         uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed
