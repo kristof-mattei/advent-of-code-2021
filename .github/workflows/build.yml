@@ -274,7 +274,7 @@ jobs:
           cargo --version
 
       - name: Run Clippy for GitHub Actions report
-        uses: actions-rs-plus/clippy-check@7b7d47b472d49e0f957cbe3d9b5b9beba1f6d00f
+        uses: actions-rs-plus/clippy-check@9edbda7ba41d479c1db82f907fb9fe4baa4d46ec
         with:
           args: --workspace --all-targets --all-features -- --deny clippy::all --deny clippy::pedantic --deny clippy::cargo
 
