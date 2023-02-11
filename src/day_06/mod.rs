@@ -80,7 +80,7 @@ impl Day for Solution {
             age_fishes_fast(&mut fast_fishes);
         }
 
-        PartSolution::U64(fast_fishes.iter().map(|(_, v)| v).sum::<u64>())
+        PartSolution::U64(fast_fishes.values().sum::<u64>())
     }
 }
 
@@ -155,7 +155,7 @@ mod test {
                 age_fishes_fast(&mut fast_fishes);
             }
 
-            assert_eq!(26, fast_fishes.iter().map(|(_, v)| v).sum::<u64>());
+            assert_eq!(26, fast_fishes.values().sum::<u64>());
         }
 
         #[test]
@@ -170,7 +170,7 @@ mod test {
                 age_fishes_fast(&mut fast_fishes);
             }
 
-            assert_eq!(5934, fast_fishes.iter().map(|(_, v)| v).sum::<u64>());
+            assert_eq!(5934, fast_fishes.values().sum::<u64>());
         }
 
         #[test]
@@ -187,7 +187,7 @@ mod test {
 
             assert_eq!(
                 26_984_457_539,
-                fast_fishes.iter().map(|(_, v)| v).sum::<u64>()
+                fast_fishes.values().sum::<u64>()
             );
         }
     }

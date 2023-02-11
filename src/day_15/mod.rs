@@ -11,7 +11,7 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Chiton>> {
     for line in lines {
         field.push(
             line.chars()
-                .map(|x| x.to_digit(10).unwrap() as u32)
+                .map(|x| x.to_digit(10).unwrap())
                 .map(|x| (x, Cell::new(false)))
                 .collect(),
         );

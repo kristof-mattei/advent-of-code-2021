@@ -5,7 +5,7 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
     for line in diagnostic_report_lines {
         for i in 0..bits_to_consider {
             if (line >> i & 0b0001) == 1 {
-                set_count_by_column[i as usize] += 1;
+                set_count_by_column[i] += 1;
             }
         }
     }
@@ -16,7 +16,7 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
     let mut epsilon = 0;
 
     for i in 0..bits_to_consider {
-        if set_count_by_column[i as usize] > half_amount_of_lines {
+        if set_count_by_column[i] > half_amount_of_lines {
             gamma |= 1 << i;
         } else {
             epsilon |= 1 << i;
