@@ -3,11 +3,11 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
     let mut set_count_by_column: Vec<u32> = vec![0; bits_to_consider];
 
     for line in diagnostic_report_lines {
-        for i in 0..bits_to_consider {
-            if (line >> i & 0b0001) == 1 {
+        (0..bits_to_consider)
+            .filter(|i| (line >> i & 0b0001) == 1)
+            .for_each(|i| {
                 set_count_by_column[i] += 1;
-            }
-        }
+            });
     }
 
     let half_amount_of_lines = diagnostic_report_lines.len() as u32 / 2;
@@ -15,13 +15,13 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
     let mut gamma = 0;
     let mut epsilon = 0;
 
-    for i in 0..bits_to_consider {
+    (0..bits_to_consider).for_each(|i| {
         if set_count_by_column[i] > half_amount_of_lines {
             gamma |= 1 << i;
         } else {
             epsilon |= 1 << i;
         }
-    }
+    });
 
     (gamma, epsilon)
 }

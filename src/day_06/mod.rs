@@ -185,10 +185,7 @@ mod test {
                 age_fishes_fast(&mut fast_fishes);
             }
 
-            assert_eq!(
-                26_984_457_539,
-                fast_fishes.values().sum::<u64>()
-            );
+            assert_eq!(26_984_457_539, fast_fishes.values().sum::<u64>());
         }
     }
 }
