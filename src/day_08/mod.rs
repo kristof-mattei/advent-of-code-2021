@@ -239,10 +239,7 @@ fn decode_solution(key: &[&LetterCombination], encoded_solution: &[&LetterCombin
     let length = encoded_solution.len() - 1;
 
     for (index, n) in encoded_solution.iter().enumerate() {
-        let decoded = match key.iter().position(|x| x == n) {
-            Some(t) => t,
-            None => panic!(),
-        };
+        let Some(decoded) = key.iter().position(|x| x == n) else { panic!() };
 
         // now based on the index we need to add it to result
         // letter at index zero is actually the higest
