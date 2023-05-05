@@ -70,9 +70,9 @@ fn calculate_overlap_of_2(vent_lines: &[VentLine]) -> u32 {
 
     for vent_line in vent_lines {
         for (x, y) in &generate_coordinates_in_between(vent_line) {
-            let val = field[((*y) as usize)][(*x) as usize];
+            let val = field[(*y) as usize][(*x) as usize];
 
-            field[((*y) as usize)][(*x) as usize] = val + 1;
+            field[(*y) as usize][(*x) as usize] = val + 1;
         }
     }
 
