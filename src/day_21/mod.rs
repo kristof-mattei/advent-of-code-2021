@@ -217,12 +217,9 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_21::{parse_lines, play, Player, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_21::{parse_lines, play, Player, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -253,10 +250,9 @@ mod test {
     mod part_2 {
         use std::collections::HashMap;
 
-        use crate::{
-            day_21::{parse_lines, play_quantum, test::get_example, Game, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_21::test::get_example;
+        use crate::day_21::{parse_lines, play_quantum, Game, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

@@ -181,15 +181,12 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_25::{
-                move_cucumbers, move_cucumbers_in_direction, parse_lines,
-                test::get_smaller_example, Board, Cucumber, Solution,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_25::test::get_smaller_example;
+        use crate::day_25::{
+            move_cucumbers, move_cucumbers_in_direction, parse_lines, Board, Cucumber, Solution,
+        };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

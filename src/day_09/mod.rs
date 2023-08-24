@@ -1,4 +1,5 @@
-use std::{cell::Cell, collections::HashSet};
+use std::cell::Cell;
+use std::collections::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
@@ -252,12 +253,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_09::{calculate_risk_level, get_low_points, parse_lines, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_09::{calculate_risk_level, get_low_points, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -278,15 +276,11 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_09::{
-                calculate_basin_scores, get_basins, get_basins_2, get_low_points, parse_lines,
-                Solution,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_09::{
+            calculate_basin_scores, get_basins, get_basins_2, get_low_points, parse_lines, Solution,
+        };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

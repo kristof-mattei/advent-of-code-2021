@@ -219,12 +219,9 @@ mod test {
     }
     mod part_1 {
 
-        use crate::{
-            day_19::{calculate_permutations, parse_lines, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_19::{calculate_permutations, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -243,10 +240,8 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_19::Solution,
-            shared::{Day, PartSolution},
-        };
+        use crate::day_19::Solution;
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

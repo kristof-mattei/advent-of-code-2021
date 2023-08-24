@@ -1,4 +1,5 @@
-use std::{cell::Cell, collections::HashMap};
+use std::cell::Cell;
+use std::collections::HashMap;
 
 use crate::shared::{Day, PartSolution};
 
@@ -228,7 +229,7 @@ fn dump_field(field: &[Vec<Chiton>]) {
 }
 
 fn duplicate_x_times(original: &mut Vec<Vec<Chiton>>, times: u32) {
-    for r in original.iter_mut() {
+    for r in &mut *original {
         let mut to_roll_over_and_re_insert = r.clone();
 
         for _ in 0..times {
@@ -250,7 +251,7 @@ fn duplicate_x_times(original: &mut Vec<Vec<Chiton>>, times: u32) {
     for _ in 0..times {
         // bump all numbers
         for inner in &mut to_roll_over_and_re_insert {
-            for f in inner.iter_mut() {
+            for f in inner {
                 roll_over_after_9(&mut f.0);
             }
         }
@@ -272,12 +273,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_15::{a_star, dump_field, parse_lines, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_15::{a_star, dump_field, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -310,10 +308,8 @@ mod test {
 
     mod part_2 {
         use super::{get_example, get_example_5x};
-        use crate::{
-            day_15::{a_star, duplicate_x_times, parse_lines, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_15::{a_star, duplicate_x_times, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

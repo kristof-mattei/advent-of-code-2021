@@ -1,7 +1,5 @@
-use std::{
-    cell::{Cell, RefCell},
-    error::Error,
-};
+use std::cell::{Cell, RefCell};
+use std::error::Error;
 
 use crate::shared::{Day, PartSolution};
 
@@ -282,9 +280,8 @@ mod test {
     }
 
     mod part_1 {
-        use crate::day_24::{number_to_vec, parse_lines, Alu};
-
         use super::get_example;
+        use crate::day_24::{number_to_vec, parse_lines, Alu};
 
         #[test]
         fn outcome() {

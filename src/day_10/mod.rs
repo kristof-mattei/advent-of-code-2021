@@ -189,14 +189,11 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_10::{
-                calculate_winnings, find_first_illegal_character, parse_lines, Solution, Symbol,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_10::{
+            calculate_winnings, find_first_illegal_character, parse_lines, Solution, Symbol,
+        };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -223,15 +220,12 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_10::{
-                calculate_completion, calculate_score, find_first_illegal_character, parse_lines,
-                Solution, Symbol,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_10::{
+            calculate_completion, calculate_score, find_first_illegal_character, parse_lines,
+            Solution, Symbol,
+        };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

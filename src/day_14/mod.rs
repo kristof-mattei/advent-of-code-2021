@@ -1,4 +1,6 @@
-use std::{collections::HashMap, hash::Hash, ops::AddAssign};
+use std::collections::HashMap;
+use std::hash::Hash;
+use std::ops::AddAssign;
 
 use crate::shared::{Day, PartSolution};
 
@@ -182,14 +184,11 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_14::{
-                get_min_and_max_hashmap, parse_lines, parse_polymer, polymer_to_hashmap, Solution,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_14::{
+            get_min_and_max_hashmap, parse_lines, parse_polymer, polymer_to_hashmap, Solution,
+        };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -219,13 +218,12 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_14::{
-                get_min_and_max_hashmap, parse_lines, parse_lines_part_2, parse_polymer_part_2,
-                polymer_to_hashmap_part2, test::get_example, Solution,
-            },
-            shared::{Day, PartSolution},
+        use crate::day_14::test::get_example;
+        use crate::day_14::{
+            get_min_and_max_hashmap, parse_lines, parse_lines_part_2, parse_polymer_part_2,
+            polymer_to_hashmap_part2, Solution,
         };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

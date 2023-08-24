@@ -219,13 +219,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_04::{
-                calculate_winnings, parse_lines, test::get_example, Playfield, PlayfieldCell,
-                Solution,
-            },
-            shared::{Day, PartSolution},
-        };
+        use crate::day_04::test::get_example;
+        use crate::day_04::{calculate_winnings, parse_lines, Playfield, PlayfieldCell, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -386,10 +382,9 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_04::{calculate_last_winning_board_2, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_04::test::get_example;
+        use crate::day_04::{calculate_last_winning_board_2, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
