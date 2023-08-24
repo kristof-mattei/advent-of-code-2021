@@ -14,7 +14,7 @@ fn parse_lines(lines: &[&str]) -> Vec<u8> {
 fn age_fishes(fishes: &mut Vec<u8>) {
     let mut new_fishes_to_append: usize = 0;
 
-    for fish in fishes.iter_mut() {
+    for fish in &mut *fishes {
         if *fish == 0 {
             *fish = 6;
             new_fishes_to_append += 1;
@@ -94,10 +94,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_06::{age_fishes, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_06::test::get_example;
+        use crate::day_06::{age_fishes, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -133,10 +132,9 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_06::{age_fishes_fast, parse_lines, speed_up_fishes, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_06::test::get_example;
+        use crate::day_06::{age_fishes_fast, parse_lines, speed_up_fishes, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

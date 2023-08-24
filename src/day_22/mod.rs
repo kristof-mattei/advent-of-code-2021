@@ -47,7 +47,7 @@ fn parse_lines(lines: &[&str]) -> Vec<Instruction> {
 fn get_on_cuboids(instructions: &[Instruction]) -> Vec<Cuboid> {
     let mut on_cuboids: Vec<Cuboid> = Vec::new();
 
-    for instruction in instructions.iter() {
+    for instruction in instructions {
         let cuboid = Cuboid::new(
             instruction.start.x,
             instruction.end.x,
@@ -256,15 +256,10 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_22::{
-                calculate_on_points_naive, parse_lines, test::get_larger_example, Instruction,
-                Point, Solution,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_22::test::get_larger_example;
+        use crate::day_22::{calculate_on_points_naive, parse_lines, Instruction, Point, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -398,12 +393,9 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_22::{
-                calculate_on_points, parse_lines, test::get_example_part_2, Cuboid, Solution,
-            },
-            shared::{Day, PartSolution},
-        };
+        use crate::day_22::test::get_example_part_2;
+        use crate::day_22::{calculate_on_points, parse_lines, Cuboid, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

@@ -201,10 +201,8 @@ mod test {
     mod part_1 {
         use std::cell::Cell;
 
-        use crate::{
-            day_17::{find_max_y, Probe, Solution, Target},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_17::{find_max_y, Probe, Solution, Target};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -434,10 +432,8 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_17::{count_hits, Solution, Target},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_17::{count_hits, Solution, Target};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

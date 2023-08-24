@@ -1,7 +1,7 @@
+use std::cmp;
 use std::collections::HashMap;
 
 use crate::shared::{Day, PartSolution};
-use std::cmp;
 
 fn parse_lines(lines: &[&str]) -> Vec<u32> {
     lines[0]
@@ -109,10 +109,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_07::{find_minimum, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_07::test::get_example;
+        use crate::day_07::{find_minimum, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -132,12 +131,9 @@ mod test {
     mod part_2 {
         use std::collections::HashMap;
 
-        use crate::{
-            day_07::{
-                calculate_fuel_needed_2, find_minimum_2, parse_lines, test::get_example, Solution,
-            },
-            shared::{Day, PartSolution},
-        };
+        use crate::day_07::test::get_example;
+        use crate::day_07::{calculate_fuel_needed_2, find_minimum_2, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

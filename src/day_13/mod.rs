@@ -175,12 +175,9 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_13::{fold, parse_lines, pretty_print, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_13::{fold, parse_lines, pretty_print, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -203,7 +200,7 @@ mod test {
             fold(&mut field, fold_instructions.get(0).unwrap());
 
             #[rustfmt::skip]
-            let lines_after_fold_1: Vec<String> = vec![
+            let lines_after_fold_1: Vec<String> = [
                 "#.##..#..#.",
                 "#...#......",
                 "......#...#",
@@ -234,7 +231,7 @@ mod test {
             fold(&mut field, fold_instructions.get(1).unwrap());
 
             #[rustfmt::skip]
-            let lines_after_fold_2: Vec<String> = vec![
+            let lines_after_fold_2: Vec<String> = [
                 "#####",
                 "#...#",
                 "#...#",
@@ -257,14 +254,12 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_13::Solution,
-            shared::{Day, PartSolution},
-        };
+        use crate::day_13::Solution;
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
-            let solution: Vec<String> = vec![
+            let solution: Vec<String> = [
                 ".##....##..##..#..#.###...##..###..###..",
                 "#..#....#.#..#.#.#..#..#.#..#.#..#.#..#.",
                 "#.......#.#....##...###..#..#.#..#.###..",

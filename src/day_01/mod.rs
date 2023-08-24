@@ -62,10 +62,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_01::{count_increments, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_01::test::get_example;
+        use crate::day_01::{count_increments, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -82,10 +81,9 @@ mod test {
         }
     }
     mod part_2 {
-        use crate::{
-            day_01::{count_window_of_3_increments, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_01::test::get_example;
+        use crate::day_01::{count_window_of_3_increments, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

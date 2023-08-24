@@ -1,6 +1,7 @@
-use std::collections::HashMap;
+use std::cell::RefCell;
+use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
-use std::{cell::RefCell, collections::HashSet, rc::Rc};
+use std::rc::Rc;
 
 use crate::shared::{Day, PartSolution};
 
@@ -93,7 +94,7 @@ where
     if cave.is_end() {
         solutions.push(visited);
     } else {
-        for target_cave in cave.targets.borrow().iter() {
+        for target_cave in &*cave.targets.borrow() {
             if can_revisit(&visited, target_cave) {
                 let visited_new = visited.clone();
 
@@ -221,14 +222,9 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_12::{build_cave_system, calculate_all_paths, can_visit_part_1, Solution},
-            shared::{Day, PartSolution},
-        };
-
-        use super::get_example;
-        use super::get_example_even_larger;
-        use super::get_example_slightly_larger;
+        use super::{get_example, get_example_even_larger, get_example_slightly_larger};
+        use crate::day_12::{build_cave_system, calculate_all_paths, can_visit_part_1, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -274,16 +270,10 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_12::{
-                build_cave_system, calculate_all_paths, can_visit_part_2,
-                test::{get_example_even_larger, get_example_slightly_larger},
-                Solution,
-            },
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_12::test::{get_example_even_larger, get_example_slightly_larger};
+        use crate::day_12::{build_cave_system, calculate_all_paths, can_visit_part_2, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

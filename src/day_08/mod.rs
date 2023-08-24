@@ -1,4 +1,5 @@
-use std::{collections::HashSet, ops::Sub};
+use std::collections::HashSet;
+use std::ops::Sub;
 
 use crate::shared::{Day, PartSolution};
 
@@ -239,7 +240,9 @@ fn decode_solution(key: &[&LetterCombination], encoded_solution: &[&LetterCombin
     let length = encoded_solution.len() - 1;
 
     for (index, n) in encoded_solution.iter().enumerate() {
-        let Some(decoded) = key.iter().position(|x| x == n) else { panic!() };
+        let Some(decoded) = key.iter().position(|x| x == n) else {
+            panic!()
+        };
 
         // now based on the index we need to add it to result
         // letter at index zero is actually the higest
@@ -287,10 +290,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_08::{count_digits_1_4_7_8, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_08::test::get_example;
+        use crate::day_08::{count_digits_1_4_7_8, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -308,10 +310,9 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_08::{calculate_signal_patterns, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_08::test::get_example;
+        use crate::day_08::{calculate_signal_patterns, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

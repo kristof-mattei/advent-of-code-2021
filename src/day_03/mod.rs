@@ -130,10 +130,9 @@ mod test {
     }
 
     mod part_1 {
-        use crate::{
-            day_03::{parse_diagnostic_report, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_03::test::get_example;
+        use crate::day_03::{parse_diagnostic_report, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -153,10 +152,9 @@ mod test {
         }
     }
     mod part_2 {
-        use crate::{
-            day_03::{parse_diagnostic_report_2, parse_lines, test::get_example, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_03::test::get_example;
+        use crate::day_03::{parse_diagnostic_report_2, parse_lines, Solution};
+        use crate::shared::{Day, PartSolution};
         #[test]
         fn outcome() {
             assert_eq!((Solution {}).part_2(), PartSolution::U32(4_125_600));

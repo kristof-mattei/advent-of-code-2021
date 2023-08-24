@@ -329,10 +329,10 @@ impl Day for Solution {
 mod test {
 
     mod part_1 {
-        use crate::{
-            day_16::{calculate_version_sum, parse_packet_string, Packet, PacketInside, Solution},
-            shared::{Day, PartSolution},
+        use crate::day_16::{
+            calculate_version_sum, parse_packet_string, Packet, PacketInside, Solution,
         };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -606,10 +606,8 @@ mod test {
     }
 
     mod part_2 {
-        use crate::{
-            day_16::{calculate_deep_packet_value, parse_packet_string, Solution},
-            shared::{Day, PartSolution},
-        };
+        use crate::day_16::{calculate_deep_packet_value, parse_packet_string, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

@@ -312,13 +312,11 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_18::{
-                calculate_magnitude, explode, parse_lines, parse_snailfish_pair, split,
-                sum_explode_split, Snailfish, Solution,
-            },
-            shared::{Day, PartSolution},
+        use crate::day_18::{
+            calculate_magnitude, explode, parse_lines, parse_snailfish_pair, split,
+            sum_explode_split, Snailfish, Solution,
         };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
@@ -813,12 +811,10 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_18::{
-                find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair, Solution,
-            },
-            shared::{Day, PartSolution},
+        use crate::day_18::{
+            find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair, Solution,
         };
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {

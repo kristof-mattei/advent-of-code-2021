@@ -1,4 +1,5 @@
-use std::{cell::Cell, collections::HashSet};
+use std::cell::Cell;
+use std::collections::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
@@ -184,12 +185,9 @@ mod test {
 
     mod part_1 {
 
-        use crate::{
-            day_11::{parse_lines, step, Octopus, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_11::{parse_lines, step, Octopus, Solution};
+        use crate::shared::{Day, PartSolution};
 
         fn back_to_vec_string(octopus_field: &[Vec<Octopus>]) -> Vec<String> {
             let mut lines = Vec::new();
@@ -245,12 +243,9 @@ mod test {
 
     mod part_2 {
 
-        use crate::{
-            day_11::{parse_lines, step, Solution},
-            shared::{Day, PartSolution},
-        };
-
         use super::get_example;
+        use crate::day_11::{parse_lines, step, Solution};
+        use crate::shared::{Day, PartSolution};
 
         #[test]
         fn outcome() {
