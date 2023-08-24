@@ -227,14 +227,14 @@ mod test {
 
             let octopus_field = parse_lines(lines);
 
-            let _: u32 = step(&octopus_field);
+            let _ = step(&octopus_field);
 
             assert_eq!(
                 vec!["34543", "40004", "50005", "40004", "34543"],
                 back_to_vec_string(&octopus_field)
             );
 
-            let _: u32 = step(&octopus_field);
+            let _ = step(&octopus_field);
 
             assert_eq!(
                 vec!["45654", "51115", "61116", "51115", "45654",],
