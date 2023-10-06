@@ -143,8 +143,7 @@ fn get_quantum_die_rolls() -> HashMap<u32, u32> {
 fn play_quantum(cache: &mut HashMap<Game, Vec<u64>>, game: &Game, until: u32) -> Vec<u64> {
     let rolls = get_quantum_die_rolls();
 
-    let mut results = Vec::new();
-    results.resize(game.players.len(), 0);
+    let mut results = vec![0; game.players.len()];
 
     let next_player = (game.current_player + 1) % game.players.len();
 
