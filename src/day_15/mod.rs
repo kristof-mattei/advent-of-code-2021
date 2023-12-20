@@ -1,5 +1,5 @@
-use std::collections::HashMap;
-use std::{cell::Cell, collections::BinaryHeap};
+use std::cell::Cell;
+use std::collections::{BinaryHeap, HashMap};
 
 use crate::shared::{Day, PartSolution};
 
