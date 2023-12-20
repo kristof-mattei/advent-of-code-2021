@@ -1,5 +1,5 @@
 use std::cell::Cell;
-use std::collections::HashMap;
+use std::collections::{BinaryHeap, HashMap};
 
 use crate::shared::{Day, PartSolution};
 
@@ -21,38 +21,42 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Chiton>> {
     field
 }
 
-fn get_neighbors<T>(chiton_field: &[Vec<T>], coordinates: Coordinates) -> Vec<Coordinates> {
+fn get_neighbors<T>(
+    chiton_field: &[Vec<T>],
+    (row_index, column_index): Coordinates,
+) -> Vec<Coordinates> {
     let mut neighbors = Vec::new();
 
-    let (row_index, column_index) = coordinates;
-
     let rows = chiton_field.len();
-    let columns = chiton_field.get(0).map(Vec::len).unwrap_or_default();
+    let columns = chiton_field
+        .get(row_index)
+        .map(Vec::len)
+        .unwrap_or_default();
 
-    let can_go_left = column_index > 0;
-    let can_go_up = row_index > 0;
+    let left = column_index.checked_sub(1);
+    let up = row_index.checked_sub(1);
 
-    let can_go_right = column_index + 1 < columns;
-    let can_go_down = row_index + 1 < rows;
+    let right = (column_index + 1 < columns).then_some(column_index + 1);
+    let down = (row_index + 1 < rows).then_some(row_index + 1);
 
     // up
-    if can_go_up {
-        neighbors.push((row_index - 1, column_index));
+    if let Some(u) = up {
+        neighbors.push((u, column_index));
     }
 
     // right
-    if can_go_right {
-        neighbors.push((row_index, column_index + 1));
+    if let Some(r) = right {
+        neighbors.push((row_index, r));
     }
 
     // down
-    if can_go_down {
-        neighbors.push((row_index + 1, column_index));
+    if let Some(d) = down {
+        neighbors.push((d, column_index));
     }
 
     // left
-    if can_go_left {
-        neighbors.push((row_index, column_index - 1));
+    if let Some(l) = left {
+        neighbors.push((row_index, l));
     }
 
     neighbors
@@ -88,29 +92,30 @@ fn heuristic(field: &[Vec<Chiton>], current: Coordinates) -> u32 {
     ((field.len() - current.0) + (field[0].len() - current.1)) as u32
 }
 
+#[derive(PartialEq, Eq)]
+struct Node(Coordinates, u32);
+
+impl Ord for Node {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        other.1.cmp(&self.1)
+    }
+}
+
+impl PartialOrd for Node {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
 fn a_star(field: &mut [Vec<Chiton>], start: Coordinates, goal: Coordinates) -> Vec<Coordinates> {
-    let mut open_set = Vec::from([(start, heuristic(field, start))]);
+    let mut open_set = BinaryHeap::from([Node(start, heuristic(field, start))]);
 
     let mut came_from = HashMap::<Coordinates, Coordinates>::new();
 
     let mut g_score = HashMap::from([(start, 0)]);
 
-    let mut f_score = HashMap::from([(start, heuristic(field, start))]);
-
-    while !open_set.is_empty() {
-        open_set.sort_unstable_by(|(_, v), (_, v2)| v2.cmp(v));
-        let current = open_set.pop().unwrap().0;
-        // old way of getting current:
-
-        // let current = *open_set
-        //     .iter()
-        //     .map(|os| (os, f_score.get(os)))
-        //     .min_by(|(_, value1), (_, value2)| value1.cmp(value2))
-        //     .unwrap()
-        //     .0;
-
-        // open_set.remove(&current);
-
+    while let Some(current) = open_set.pop() {
+        let current = current.0;
         field[current.0][current.1].1.set(true);
 
         if current == goal {
@@ -129,33 +134,8 @@ fn a_star(field: &mut [Vec<Chiton>], start: Coordinates, goal: Coordinates) -> V
                 g_score.insert(neighbor, tentative_g_score);
 
                 let g_score_with_heurisitc = tentative_g_score + heuristic(field, neighbor);
-                f_score.insert(neighbor, g_score_with_heurisitc);
 
-                // here we deviate from A*
-                // we actually keep the latest the last f_score with it
-                // but since we cannot use a HashSet (doesn't retain order)
-                // or BinaryHeap (no random access)
-                // we do some manual work
-                // always remove the item if it exists
-                // and push it again
-                // we re-sort the set once we need to re-evaluate
-                // and this is even better than say a binary heap, as that one sorts on every insert
-                if let Some(position) = open_set.iter().position(|(c, _)| *c == neighbor) {
-                    open_set.remove(position);
-                }
-
-                open_set.push((neighbor, g_score_with_heurisitc));
-
-                // before the code looked like
-                // open_set was a HashSet<_>
-                // if !open_set.contains(&neighbor) {
-                //     open_set.insert(neighbor);
-                // }
-                // and at the beginning of the loop we would find and sort them against f_score
-
-                // the current version is much faster, as we
-                // * retain the sorted elements
-                // * defer resorting only when needed
+                open_set.push(Node(neighbor, g_score_with_heurisitc));
             }
         }
     }
