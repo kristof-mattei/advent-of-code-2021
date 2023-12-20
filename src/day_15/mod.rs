@@ -21,38 +21,42 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Chiton>> {
     field
 }
 
-fn get_neighbors<T>(chiton_field: &[Vec<T>], coordinates: Coordinates) -> Vec<Coordinates> {
+fn get_neighbors<T>(
+    chiton_field: &[Vec<T>],
+    (row_index, column_index): Coordinates,
+) -> Vec<Coordinates> {
     let mut neighbors = Vec::new();
 
-    let (row_index, column_index) = coordinates;
-
     let rows = chiton_field.len();
-    let columns = chiton_field.get(0).map(Vec::len).unwrap_or_default();
+    let columns = chiton_field
+        .get(row_index)
+        .map(Vec::len)
+        .unwrap_or_default();
 
-    let can_go_left = column_index > 0;
-    let can_go_up = row_index > 0;
+    let left = column_index.checked_sub(1);
+    let up = row_index.checked_sub(1);
 
-    let can_go_right = column_index + 1 < columns;
-    let can_go_down = row_index + 1 < rows;
+    let right = (column_index + 1 < columns).then_some(column_index + 1);
+    let down = (row_index + 1 < rows).then_some(row_index + 1);
 
     // up
-    if can_go_up {
-        neighbors.push((row_index - 1, column_index));
+    if let Some(u) = up {
+        neighbors.push((u, column_index));
     }
 
     // right
-    if can_go_right {
-        neighbors.push((row_index, column_index + 1));
+    if let Some(r) = right {
+        neighbors.push((row_index, r));
     }
 
     // down
-    if can_go_down {
-        neighbors.push((row_index + 1, column_index));
+    if let Some(d) = down {
+        neighbors.push((d, column_index));
     }
 
     // left
-    if can_go_left {
-        neighbors.push((row_index, column_index - 1));
+    if let Some(l) = left {
+        neighbors.push((row_index, l));
     }
 
     neighbors
