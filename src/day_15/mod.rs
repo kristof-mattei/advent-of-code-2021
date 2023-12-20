@@ -116,6 +116,7 @@ fn a_star(field: &mut [Vec<Chiton>], start: Coordinates, goal: Coordinates) -> V
 
     while let Some(current) = open_set.pop() {
         let current = current.0;
+
         field[current.0][current.1].1.set(true);
 
         if current == goal {
