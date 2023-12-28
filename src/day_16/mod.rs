@@ -3,7 +3,7 @@ use crate::shared::{Day, PartSolution};
 #[derive(Debug, PartialEq, Eq)]
 struct Packet {
     version: u16,
-    packet_type: u16,
+    r#type: u16,
     inside: PacketInside,
 }
 
@@ -234,7 +234,7 @@ fn parse_packet(
     RemainingStream {
         parsed_contents: Packet {
             version,
-            packet_type,
+            r#type: packet_type,
             inside,
         },
         relevant_bits,
@@ -348,7 +348,7 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 6,
-                    packet_type: 4,
+                    r#type: 4,
                     inside: PacketInside::Literal(2021),
                 },
                 translated
@@ -366,16 +366,16 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 1,
-                    packet_type: 6,
+                    r#type: 6,
                     inside: PacketInside::LessThanThan(vec![
                         Packet {
                             version: 6,
-                            packet_type: 4,
+                            r#type: 4,
                             inside: PacketInside::Literal(10),
                         },
                         Packet {
                             version: 2,
-                            packet_type: 4,
+                            r#type: 4,
                             inside: PacketInside::Literal(20),
                         },
                     ]),
@@ -395,21 +395,21 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 7,
-                    packet_type: 3,
+                    r#type: 3,
                     inside: PacketInside::Maximum(vec![
                         Packet {
                             version: 2,
-                            packet_type: 4,
+                            r#type: 4,
                             inside: PacketInside::Literal(1),
                         },
                         Packet {
                             version: 4,
-                            packet_type: 4,
+                            r#type: 4,
                             inside: PacketInside::Literal(2),
                         },
                         Packet {
                             version: 1,
-                            packet_type: 4,
+                            r#type: 4,
                             inside: PacketInside::Literal(3),
                         },
                     ]),
@@ -429,16 +429,16 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 4,
-                    packet_type: 2,
+                    r#type: 2,
                     inside: PacketInside::Minimum(vec![Packet {
                         version: 1,
-                        packet_type: 2,
+                        r#type: 2,
                         inside: PacketInside::Minimum(vec![Packet {
                             version: 5,
-                            packet_type: 2,
+                            r#type: 2,
                             inside: PacketInside::Minimum(vec![Packet {
                                 version: 6,
-                                packet_type: 4,
+                                r#type: 4,
                                 inside: PacketInside::Literal(15)
                             }])
                         }])
@@ -459,36 +459,36 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 3,
-                    packet_type: 0,
+                    r#type: 0,
                     inside: PacketInside::Sum(vec![
                         Packet {
                             version: 0,
-                            packet_type: 0,
+                            r#type: 0,
                             inside: PacketInside::Sum(vec![
                                 Packet {
                                     version: 0,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(10)
                                 },
                                 Packet {
                                     version: 5,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(11)
                                 }
                             ])
                         },
                         Packet {
                             version: 1,
-                            packet_type: 0,
+                            r#type: 0,
                             inside: PacketInside::Sum(vec![
                                 Packet {
                                     version: 0,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(12)
                                 },
                                 Packet {
                                     version: 3,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(13)
                                 }
                             ])
@@ -510,36 +510,36 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 6,
-                    packet_type: 0,
+                    r#type: 0,
                     inside: PacketInside::Sum(vec![
                         Packet {
                             version: 0,
-                            packet_type: 0,
+                            r#type: 0,
                             inside: PacketInside::Sum(vec![
                                 Packet {
                                     version: 0,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(10)
                                 },
                                 Packet {
                                     version: 6,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(11)
                                 }
                             ])
                         },
                         Packet {
                             version: 4,
-                            packet_type: 0,
+                            r#type: 0,
                             inside: PacketInside::Sum(vec![
                                 Packet {
                                     version: 7,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(12)
                                 },
                                 Packet {
                                     version: 0,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(13)
                                 }
                             ])
@@ -561,37 +561,37 @@ mod test {
             assert_eq!(
                 Packet {
                     version: 5,
-                    packet_type: 0,
+                    r#type: 0,
                     inside: PacketInside::Sum(vec![Packet {
                         version: 1,
-                        packet_type: 0,
+                        r#type: 0,
                         inside: PacketInside::Sum(vec![Packet {
                             version: 3,
-                            packet_type: 0,
+                            r#type: 0,
                             inside: PacketInside::Sum(vec![
                                 Packet {
                                     version: 7,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(6)
                                 },
                                 Packet {
                                     version: 6,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(6)
                                 },
                                 Packet {
                                     version: 5,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(12)
                                 },
                                 Packet {
                                     version: 2,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(15)
                                 },
                                 Packet {
                                     version: 2,
-                                    packet_type: 4,
+                                    r#type: 4,
                                     inside: PacketInside::Literal(15)
                                 }
                             ])

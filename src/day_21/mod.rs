@@ -21,7 +21,7 @@ impl DeterministicDie {
 
 #[derive(Clone, PartialEq, Hash, Eq, Debug)]
 struct Player {
-    player_number: u32,
+    number: u32,
     position: u32,
     score: u32,
 }
@@ -29,7 +29,7 @@ struct Player {
 impl Player {
     fn new(player_number: u32, start_position: u32) -> Self {
         Self {
-            player_number,
+            number: player_number,
             position: start_position,
             score: 0,
         }
@@ -68,7 +68,7 @@ fn play(mut players: Vec<Player>, until: u32) -> (u32, u32) {
             player.r#move(rolled.iter().sum());
             println!(
                 "Player {} rolls {} and moves to place {} for a total score of {}.",
-                player.player_number,
+                player.number,
                 rolled
                     .iter()
                     .map(ToString::to_string)
