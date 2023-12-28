@@ -29,7 +29,7 @@ fn get_neighbors<T>(
     let mut neighbors = HashSet::new();
 
     let rows = octopus_field.len();
-    let columns = octopus_field.get(0).map(Vec::len).unwrap_or_default();
+    let columns = octopus_field.first().map(Vec::len).unwrap_or_default();
 
     // clockwise:
     // left up
@@ -160,7 +160,7 @@ impl Day for Solution {
 
         let octopus_field = parse_lines(&lines);
         let field_size =
-            octopus_field.len() * octopus_field.get(0).map(Vec::len).unwrap_or_default();
+            octopus_field.len() * octopus_field.first().map(Vec::len).unwrap_or_default();
 
         let mut steps: u32 = 0;
         loop {
@@ -259,7 +259,7 @@ mod test {
             let octopus_field = parse_lines(&lines);
 
             let field_size =
-                octopus_field.len() * octopus_field.get(0).map(Vec::len).unwrap_or_default();
+                octopus_field.len() * octopus_field.first().map(Vec::len).unwrap_or_default();
 
             let mut steps: u32 = 0;
             loop {

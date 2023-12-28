@@ -191,7 +191,7 @@ fn parse_lines(lines: &[&str]) -> Field {
 }
 
 fn zoom_out(field: Field) -> Field {
-    let columns = field.picture.get(0).map(Vec::len).unwrap();
+    let columns = field.picture.first().map(Vec::len).unwrap();
 
     let add = 2;
 

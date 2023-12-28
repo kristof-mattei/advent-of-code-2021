@@ -45,7 +45,7 @@ impl Board {
     }
 
     fn y_dim(&self) -> usize {
-        self.cucumbers.get(0).map(Vec::len).unwrap_or_default()
+        self.cucumbers.first().map(Vec::len).unwrap_or_default()
     }
 
     fn try_move(

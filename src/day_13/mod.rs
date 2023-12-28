@@ -117,7 +117,7 @@ fn fold(field: &mut Vec<Vec<Cell<bool>>>, instruction: &Instruction) {
             }
         },
         Instruction::Y(fold_on_row) => {
-            let columns = field.get(0).map_or(0, Vec::len);
+            let columns = field.first().map_or(0, Vec::len);
 
             for r in 0..*fold_on_row {
                 let mirrored_row = (fold_on_row * 2) - r;
@@ -144,7 +144,7 @@ impl Day for Solution {
 
         let (mut field, fold_instructions) = parse_lines(&lines);
 
-        fold(&mut field, fold_instructions.get(0).unwrap());
+        fold(&mut field, fold_instructions.first().unwrap());
 
         PartSolution::USize(
             field
@@ -197,7 +197,7 @@ mod test {
 
             println!("End field");
 
-            fold(&mut field, fold_instructions.get(0).unwrap());
+            fold(&mut field, fold_instructions.first().unwrap());
 
             #[rustfmt::skip]
             let lines_after_fold_1: Vec<String> = [

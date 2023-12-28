@@ -116,7 +116,7 @@ impl<'i> Alu<'i> {
             match ins {
                 Instruction::Input(r) => {
                     let pop = self.input.borrow_mut().pop().unwrap();
-                    self.set_register(r, i64::try_from(pop).unwrap());
+                    self.set_register(r, From::from(pop));
                 },
                 Instruction::Add(a, b) => {
                     let a_val = self.get_register(a);
