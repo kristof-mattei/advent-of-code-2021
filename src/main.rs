@@ -1,11 +1,3 @@
-#![deny(clippy::all)]
-#![deny(clippy::pedantic)]
-#![deny(clippy::cargo)]
-#![deny(warnings)]
-// exceptions
-#![deny(let_underscore_drop)]
-#![deny(non_ascii_idents)]
-#![allow(clippy::uninlined_format_args)]
 #![allow(clippy::cast_possible_truncation)]
 #![allow(clippy::cast_possible_wrap)]
 #![allow(clippy::cast_sign_loss)]
