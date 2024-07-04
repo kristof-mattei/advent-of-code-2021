@@ -5,12 +5,11 @@ version = "0.0.0-development"
 edition = "2021"
 rust-version = "1.79.0"
 authors = ["Kristof Mattei"]
-license-file = "LICENSE"
 description = "Advent of Code 2021"
-repository = "https://github.com/kristof-mattei/advent-of-code-2021"
-keywords = ["playground"]
+license-file = "LICENSE"
 categories = ["playground"]
-
+keywords = ["playground"]
+repository = "https://github.com/kristof-mattei/advent-of-code-2021"
 [profile.dev]
 debug = true
 
