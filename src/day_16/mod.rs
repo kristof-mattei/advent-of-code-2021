@@ -257,7 +257,7 @@ fn parse_packet_string(packet_string: &str) -> Packet {
 }
 
 fn calculate_version_sum(packet: &Packet) -> u32 {
-    return u32::from(packet.version)
+    u32::from(packet.version)
         + match &packet.inside {
             PacketInside::Literal(_) => 0,
             PacketInside::Sum(v)
@@ -267,11 +267,11 @@ fn calculate_version_sum(packet: &Packet) -> u32 {
             | PacketInside::GreaterThan(v)
             | PacketInside::LessThanThan(v)
             | PacketInside::Equal(v) => v.iter().map(calculate_version_sum).sum::<u32>(),
-        };
+        }
 }
 
 fn calculate_deep_packet_value(packet: &Packet) -> u64 {
-    return match &packet.inside {
+    match &packet.inside {
         PacketInside::Literal(l) => *l,
         PacketInside::Sum(v) => v.iter().map(calculate_deep_packet_value).sum(),
         PacketInside::Product(v) => v.iter().map(calculate_deep_packet_value).product(),
@@ -300,7 +300,7 @@ fn calculate_deep_packet_value(packet: &Packet) -> u64 {
 
             u64::from(l == r)
         },
-    };
+    }
 }
 
 pub struct Solution {}
