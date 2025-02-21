@@ -176,7 +176,7 @@ mod test {
     mod part_1 {
 
         use super::get_example;
-        use crate::day_13::{fold, parse_lines, pretty_print, Solution};
+        use crate::day_13::{Solution, fold, parse_lines, pretty_print};
         use crate::shared::{Day, PartSolution};
 
         #[test]

@@ -119,7 +119,10 @@ fn get_basins(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<u3
             .map(|(x, y)| heatmap[*y][*x])
             .collect();
 
-        println!("We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}", heatmap[*row_index][*column_index], column_index, row_index,  basin_values);
+        println!(
+            "We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}",
+            heatmap[*row_index][*column_index], column_index, row_index, basin_values
+        );
 
         basins.push(basin_values);
     }
@@ -193,7 +196,10 @@ fn get_basins_2(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<
 
         let basin_values = get_visisted_values(&visitable_heatmap);
 
-        println!("We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}", heatmap[*row_index][*column_index], column_index, row_index,  basin_values);
+        println!(
+            "We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}",
+            heatmap[*row_index][*column_index], column_index, row_index, basin_values
+        );
 
         basins.push(basin_values);
     }
@@ -246,15 +252,12 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+        include_str!("example.txt").lines().collect()
     }
 
     mod part_1 {
         use super::get_example;
-        use crate::day_09::{calculate_risk_level, get_low_points, parse_lines, Solution};
+        use crate::day_09::{Solution, calculate_risk_level, get_low_points, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -278,7 +281,7 @@ mod test {
 
         use super::get_example;
         use crate::day_09::{
-            calculate_basin_scores, get_basins, get_basins_2, get_low_points, parse_lines, Solution,
+            Solution, calculate_basin_scores, get_basins, get_basins_2, get_low_points, parse_lines,
         };
         use crate::shared::{Day, PartSolution};
 

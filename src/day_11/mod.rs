@@ -177,16 +177,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+        include_str!("example.txt").lines().collect()
     }
 
     mod part_1 {
 
         use super::get_example;
-        use crate::day_11::{parse_lines, step, Octopus, Solution};
+        use crate::day_11::{Octopus, Solution, parse_lines, step};
         use crate::shared::{Day, PartSolution};
 
         fn back_to_vec_string(octopus_field: &[Vec<Octopus>]) -> Vec<String> {
@@ -244,7 +241,7 @@ mod test {
     mod part_2 {
 
         use super::get_example;
-        use crate::day_11::{parse_lines, step, Solution};
+        use crate::day_11::{Solution, parse_lines, step};
         use crate::shared::{Day, PartSolution};
 
         #[test]

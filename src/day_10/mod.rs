@@ -182,16 +182,13 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Symbol>> {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+        include_str!("example.txt").lines().collect()
     }
 
     mod part_1 {
         use super::get_example;
         use crate::day_10::{
-            calculate_winnings, find_first_illegal_character, parse_lines, Solution, Symbol,
+            Solution, Symbol, calculate_winnings, find_first_illegal_character, parse_lines,
         };
         use crate::shared::{Day, PartSolution};
 
@@ -222,8 +219,8 @@ mod test {
     mod part_2 {
         use super::get_example;
         use crate::day_10::{
-            calculate_completion, calculate_score, find_first_illegal_character, parse_lines,
-            Solution, Symbol,
+            Solution, Symbol, calculate_completion, calculate_score, find_first_illegal_character,
+            parse_lines,
         };
         use crate::shared::{Day, PartSolution};
 

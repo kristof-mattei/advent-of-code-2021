@@ -223,7 +223,7 @@ mod test {
     mod part_1 {
 
         use super::{get_example, get_example_even_larger, get_example_slightly_larger};
-        use crate::day_12::{build_cave_system, calculate_all_paths, can_visit_part_1, Solution};
+        use crate::day_12::{Solution, build_cave_system, calculate_all_paths, can_visit_part_1};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -272,7 +272,7 @@ mod test {
 
         use super::get_example;
         use crate::day_12::test::{get_example_even_larger, get_example_slightly_larger};
-        use crate::day_12::{build_cave_system, calculate_all_paths, can_visit_part_2, Solution};
+        use crate::day_12::{Solution, build_cave_system, calculate_all_paths, can_visit_part_2};
         use crate::shared::{Day, PartSolution};
 
         #[test]

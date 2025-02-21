@@ -184,7 +184,7 @@ mod test {
         use super::get_example;
         use crate::day_25::test::get_smaller_example;
         use crate::day_25::{
-            move_cucumbers, move_cucumbers_in_direction, parse_lines, Board, Cucumber, Solution,
+            Board, Cucumber, Solution, move_cucumbers, move_cucumbers_in_direction, parse_lines,
         };
         use crate::shared::{Day, PartSolution};
 

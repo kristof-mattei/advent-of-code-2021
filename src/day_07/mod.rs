@@ -102,15 +102,12 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+        include_str!("example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_07::test::get_example;
-        use crate::day_07::{find_minimum, parse_lines, Solution};
+        use crate::day_07::{Solution, find_minimum, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -132,7 +129,7 @@ mod test {
         use std::collections::HashMap;
 
         use crate::day_07::test::get_example;
-        use crate::day_07::{calculate_fuel_needed_2, find_minimum_2, parse_lines, Solution};
+        use crate::day_07::{Solution, calculate_fuel_needed_2, find_minimum_2, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
