@@ -258,7 +258,7 @@ mod test {
     mod part_1 {
         use super::get_example;
         use crate::day_22::test::get_larger_example;
-        use crate::day_22::{calculate_on_points_naive, parse_lines, Instruction, Point, Solution};
+        use crate::day_22::{Instruction, Point, Solution, calculate_on_points_naive, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -394,7 +394,7 @@ mod test {
     mod part_2 {
 
         use crate::day_22::test::get_example_part_2;
-        use crate::day_22::{calculate_on_points, parse_lines, Cuboid, Solution};
+        use crate::day_22::{Cuboid, Solution, calculate_on_points, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]

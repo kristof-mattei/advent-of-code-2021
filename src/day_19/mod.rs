@@ -220,7 +220,7 @@ mod test {
     mod part_1 {
 
         use super::get_example;
-        use crate::day_19::{calculate_permutations, parse_lines, Solution};
+        use crate::day_19::{Solution, calculate_permutations, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]

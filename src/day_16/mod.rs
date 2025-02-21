@@ -330,7 +330,7 @@ mod test {
 
     mod part_1 {
         use crate::day_16::{
-            calculate_version_sum, parse_packet_string, Packet, PacketInside, Solution,
+            Packet, PacketInside, Solution, calculate_version_sum, parse_packet_string,
         };
         use crate::shared::{Day, PartSolution};
 
@@ -606,7 +606,7 @@ mod test {
     }
 
     mod part_2 {
-        use crate::day_16::{calculate_deep_packet_value, parse_packet_string, Solution};
+        use crate::day_16::{Solution, calculate_deep_packet_value, parse_packet_string};
         use crate::shared::{Day, PartSolution};
 
         #[test]

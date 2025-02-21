@@ -217,7 +217,7 @@ mod test {
     mod part_1 {
 
         use super::get_example;
-        use crate::day_21::{parse_lines, play, Player, Solution};
+        use crate::day_21::{Player, Solution, parse_lines, play};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -250,7 +250,7 @@ mod test {
         use std::collections::HashMap;
 
         use crate::day_21::test::get_example;
-        use crate::day_21::{parse_lines, play_quantum, Game, Solution};
+        use crate::day_21::{Game, Solution, parse_lines, play_quantum};
         use crate::shared::{Day, PartSolution};
 
         #[test]
