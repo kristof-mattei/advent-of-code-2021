@@ -186,7 +186,7 @@ mod test {
 
         use super::get_example;
         use crate::day_14::{
-            get_min_and_max_hashmap, parse_lines, parse_polymer, polymer_to_hashmap, Solution,
+            Solution, get_min_and_max_hashmap, parse_lines, parse_polymer, polymer_to_hashmap,
         };
         use crate::shared::{Day, PartSolution};
 
@@ -220,8 +220,8 @@ mod test {
 
         use crate::day_14::test::get_example;
         use crate::day_14::{
-            get_min_and_max_hashmap, parse_lines, parse_lines_part_2, parse_polymer_part_2,
-            polymer_to_hashmap_part2, Solution,
+            Solution, get_min_and_max_hashmap, parse_lines, parse_lines_part_2,
+            parse_polymer_part_2, polymer_to_hashmap_part2,
         };
         use crate::shared::{Day, PartSolution};
 

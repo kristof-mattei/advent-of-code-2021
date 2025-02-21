@@ -255,7 +255,7 @@ mod test {
 
     mod part_1 {
         use super::get_example;
-        use crate::day_15::{a_star, dump_field, parse_lines, Solution};
+        use crate::day_15::{Solution, a_star, dump_field, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -289,7 +289,7 @@ mod test {
 
     mod part_2 {
         use super::{get_example, get_example_5x};
-        use crate::day_15::{a_star, duplicate_x_times, parse_lines, Solution};
+        use crate::day_15::{Solution, a_star, duplicate_x_times, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]

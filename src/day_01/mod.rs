@@ -56,14 +56,12 @@ impl Day for Solution {
 mod test {
     fn get_example() -> Vec<&'static str> {
         include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+            .lines().collect()
     }
 
     mod part_1 {
         use crate::day_01::test::get_example;
-        use crate::day_01::{count_increments, parse_lines, Solution};
+        use crate::day_01::{Solution, count_increments, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -82,7 +80,7 @@ mod test {
     }
     mod part_2 {
         use crate::day_01::test::get_example;
-        use crate::day_01::{count_window_of_3_increments, parse_lines, Solution};
+        use crate::day_01::{Solution, count_window_of_3_increments, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]

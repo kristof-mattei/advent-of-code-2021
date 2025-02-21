@@ -281,7 +281,7 @@ mod test {
 
     mod part_1 {
         use super::get_example;
-        use crate::day_24::{number_to_vec, parse_lines, Alu};
+        use crate::day_24::{Alu, number_to_vec, parse_lines};
 
         #[test]
         fn outcome() {

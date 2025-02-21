@@ -163,14 +163,12 @@ impl Day for Solution {
 mod test {
     fn get_example() -> Vec<&'static str> {
         include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+            .lines().collect()
     }
 
     mod part_1 {
         use crate::day_05::test::get_example;
-        use crate::day_05::{calculate_overlap_of_2, parse_lines, Solution, VentLine};
+        use crate::day_05::{Solution, VentLine, calculate_overlap_of_2, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -192,7 +190,7 @@ mod test {
 
     mod part_2 {
         use crate::day_05::test::get_example;
-        use crate::day_05::{calculate_overlap_of_2, parse_lines, Solution, VentLine};
+        use crate::day_05::{Solution, VentLine, calculate_overlap_of_2, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]

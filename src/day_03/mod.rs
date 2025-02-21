@@ -4,7 +4,7 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
 
     for line in diagnostic_report_lines {
         (0..bits_to_consider)
-            .filter(|i| (line >> i & 0b0001) == 1)
+            .filter(|i| ((line >> i) & 0b0001) == 1)
             .for_each(|i| {
                 set_count_by_column[i] += 1;
             });
@@ -63,7 +63,7 @@ fn move_and_reduce(
         find_common(filtered_lines, bits_to_consider - bit_index - 1, common);
 
     for line in filtered_lines {
-        if (line >> (bits_to_consider - bit_index - 1) & 0b01) == most_or_least_common as u32 {
+        if ((line >> (bits_to_consider - bit_index - 1)) & 0b01) == most_or_least_common as u32 {
             new_set.push(*line);
         }
     }
@@ -124,14 +124,12 @@ impl Day for Solution {
 mod test {
     fn get_example() -> Vec<&'static str> {
         include_str!("example.txt")
-            .lines()
-            .map(Into::into)
-            .collect()
+            .lines().collect()
     }
 
     mod part_1 {
         use crate::day_03::test::get_example;
-        use crate::day_03::{parse_diagnostic_report, parse_lines, Solution};
+        use crate::day_03::{Solution, parse_diagnostic_report, parse_lines};
         use crate::shared::{Day, PartSolution};
 
         #[test]
@@ -153,7 +151,7 @@ mod test {
     }
     mod part_2 {
         use crate::day_03::test::get_example;
-        use crate::day_03::{parse_diagnostic_report_2, parse_lines, Solution};
+        use crate::day_03::{Solution, parse_diagnostic_report_2, parse_lines};
         use crate::shared::{Day, PartSolution};
         #[test]
         fn outcome() {

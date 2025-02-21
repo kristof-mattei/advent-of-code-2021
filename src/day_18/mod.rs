@@ -313,8 +313,8 @@ mod test {
     mod part_1 {
 
         use crate::day_18::{
-            calculate_magnitude, explode, parse_lines, parse_snailfish_pair, split,
-            sum_explode_split, Snailfish, Solution,
+            Snailfish, Solution, calculate_magnitude, explode, parse_lines, parse_snailfish_pair,
+            split, sum_explode_split,
         };
         use crate::shared::{Day, PartSolution};
 
@@ -812,7 +812,7 @@ mod test {
     mod part_2 {
 
         use crate::day_18::{
-            find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair, Solution,
+            Solution, find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair,
         };
         use crate::shared::{Day, PartSolution};
 
