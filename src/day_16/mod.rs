@@ -47,7 +47,7 @@ fn fetch_until_bits_in_buffer(
             None => {
                 println!("You're asking more than we have left!");
             },
-        };
+        }
 
         *bits_loaded_in_buffer += 4;
     }
