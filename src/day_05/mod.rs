@@ -61,11 +61,7 @@ fn calculate_overlap_of_2(vent_lines: &[VentLine]) -> u32 {
     let mut field: Vec<Vec<u32>> = Vec::new();
 
     for _ in 0..=y_max {
-        field.push(
-            std::iter::repeat(0)
-                .take((x_max + 1) as usize)
-                .collect::<Vec<_>>(),
-        );
+        field.push(std::iter::repeat_n(0, usize::try_from(x_max).unwrap() + 1).collect::<Vec<_>>());
     }
 
     for vent_line in vent_lines {

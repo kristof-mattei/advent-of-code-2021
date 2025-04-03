@@ -129,7 +129,7 @@ impl Day for Solution {
             match find_first_illegal_character(&line_into_symbols) {
                 Some(symbol) => first_illegal_characters.push(symbol),
                 None => println!("All good"),
-            };
+            }
         }
 
         PartSolution::U32(calculate_winnings(&first_illegal_characters))
@@ -209,7 +209,7 @@ mod test {
                 match find_first_illegal_character(&line_into_symbols) {
                     None => println!("All good"),
                     Some(symbol) => first_illegal_characters.push(symbol),
-                };
+                }
             }
 
             assert_eq!(26397, calculate_winnings(&first_illegal_characters));
