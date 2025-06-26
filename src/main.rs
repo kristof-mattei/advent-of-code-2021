@@ -1,8 +1,6 @@
-#![allow(clippy::cast_possible_truncation)]
-#![allow(clippy::cast_possible_wrap)]
-#![allow(clippy::cast_sign_loss)]
-#![allow(clippy::too_many_lines)]
-#![allow(clippy::let_and_return)]
+#![expect(clippy::cast_possible_truncation)]
+#![expect(clippy::too_many_lines)]
+#![expect(clippy::let_and_return)]
 
 use shared::Day;
 

@@ -12,7 +12,7 @@ struct Permutation {
 }
 
 struct Scanner {
-    #[allow(dead_code)]
+    #[expect(dead_code)]
     permutations: Vec<Permutation>,
 }
 

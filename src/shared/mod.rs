@@ -10,7 +10,6 @@ pub enum PartSolution {
     U64(u64),
     USize(usize),
     Vec(Vec<String>),
-    #[allow(dead_code)]
     None,
 }
 
