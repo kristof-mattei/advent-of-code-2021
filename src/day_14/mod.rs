@@ -98,8 +98,8 @@ fn polymer_to_hashmap(input: &[char]) -> HashMap<char, u64> {
 
 fn get_min_and_max_hashmap(hashmap: &HashMap<char, u64>) -> (u64, u64) {
     (
-        hashmap.iter().map(|(_, v)| *v).min().unwrap(),
-        hashmap.iter().map(|(_, v)| *v).max().unwrap(),
+        hashmap.values().copied().min().unwrap(),
+        hashmap.values().copied().max().unwrap(),
     )
 }
 
