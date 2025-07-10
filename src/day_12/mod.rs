@@ -43,9 +43,9 @@ fn get_or_insert_cave(caves: &mut Caves, cave_name: &str) -> Rc<Cave> {
     });
 
     if let Some(found_cave) = caves.get(&cave) {
-        found_cave.clone()
+        Rc::clone(found_cave)
     } else {
-        caves.insert(cave.clone());
+        caves.insert(Rc::clone(&cave));
 
         cave
     }
@@ -56,7 +56,7 @@ fn add_path(caves: &mut Caves, from: &str, to: &str) {
     let from_cave = get_or_insert_cave(caves, from);
     let to_cave = get_or_insert_cave(caves, to);
 
-    from_cave.targets.borrow_mut().insert(to_cave.clone());
+    from_cave.targets.borrow_mut().insert(Rc::clone(&to_cave));
     to_cave.targets.borrow_mut().insert(from_cave);
 }
 
@@ -162,7 +162,7 @@ fn can_visit_part_2(visited_caves: &[Rc<Cave>], cave: &Rc<Cave>) -> bool {
 
         for visited_cave in visited_caves.iter().filter(|x| x.is_small()) {
             let visit_count = visit_counts
-                .entry(visited_cave.clone())
+                .entry(Rc::clone(visited_cave))
                 .and_modify(|c| *c += 1)
                 .or_insert(1);
 
