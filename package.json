@@ -1,5 +1,4 @@
 {
-  "name": "advent-of-code-2021",
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "engines": {
@@ -11,6 +10,7 @@
   },
   "devDependencies": {
     "prettier": "3.6.2",
-    "prettier-plugin-sh": "0.18.0"
+    "prettier-plugin-sh": "0.18.0",
+    "prettier-plugin-toml": "2.0.6"
   }
 }
