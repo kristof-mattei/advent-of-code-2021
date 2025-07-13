@@ -1,4 +1,5 @@
 {
+  "name": "rust-seed",
   "type": "module",
   "packageManager": "pnpm@10.13.1",
   "engines": {
