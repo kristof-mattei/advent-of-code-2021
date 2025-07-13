@@ -11,6 +11,13 @@ export default {
     useTabs: false,
     overrides: [
         {
+            files: ["*.json"],
+            options: {
+                trailingComma: "none",
+                printWidth: 80,
+            },
+        },
+        {
             files: ["*.toml"],
             options: {
                 printWidth: 80,
@@ -23,14 +30,13 @@ export default {
             },
         },
         {
-            files: ["*.json"],
+            files: ["*.yaml", "*.yml"],
             options: {
-                trailingComma: "none",
-                printWidth: 80,
+                tabWidth: 2,
             },
         },
         {
-            files: ["*.yaml", "*.yml"],
+            files: ["package.json"],
             options: {
                 tabWidth: 2,
             },
