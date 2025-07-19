@@ -5,7 +5,7 @@ fn determine_direction(directions: &[Direction]) -> (u32, u32) {
     let mut depth = 0;
 
     for direction in directions {
-        match direction {
+        match *direction {
             Direction::Up(x) => depth -= x,
             Direction::Down(x) => depth += x,
             Direction::Forward(x) => forward += x,
@@ -20,7 +20,7 @@ fn determine_direction_2(directions: &[Direction]) -> (u32, u32) {
     let mut aim = 0;
 
     for direction in directions {
-        match direction {
+        match *direction {
             Direction::Up(x) => aim -= x,
             Direction::Down(x) => aim += x,
             Direction::Forward(x) => {
@@ -60,7 +60,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_02/input.txt").lines().collect();
 
         let instructions = parse_lines(&lines);
 
@@ -70,7 +70,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_02/input.txt").lines().collect();
 
         let instructions = parse_lines(&lines);
 
@@ -83,13 +83,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_02/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_02::test::get_example;
         use crate::day_02::{Solution, determine_direction, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -111,7 +111,7 @@ mod test {
     mod part_2 {
         use crate::day_02::test::get_example;
         use crate::day_02::{Solution, determine_direction_2, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

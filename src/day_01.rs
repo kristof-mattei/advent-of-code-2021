@@ -36,7 +36,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_01/input.txt").lines().collect();
 
         let numbers = parse_lines(&lines);
 
@@ -44,7 +44,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_01/input.txt").lines().collect();
 
         let numbers = parse_lines(&lines);
 
@@ -55,13 +55,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_01/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_01::test::get_example;
         use crate::day_01::{Solution, count_increments, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -80,7 +80,7 @@ mod test {
     mod part_2 {
         use crate::day_01::test::get_example;
         use crate::day_01::{Solution, count_window_of_3_increments, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

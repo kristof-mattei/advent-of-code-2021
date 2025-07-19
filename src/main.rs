@@ -1,6 +1,9 @@
 #![expect(clippy::cast_possible_truncation)]
 #![expect(clippy::too_many_lines)]
 #![expect(clippy::let_and_return)]
+#![expect(clippy::as_conversions)]
+#![expect(clippy::allow_attributes_without_reason)]
+#![expect(clippy::missing_assert_message)]
 
 use shared::Day;
 

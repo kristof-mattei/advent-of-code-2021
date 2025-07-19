@@ -178,10 +178,10 @@ fn parse_lines(lines: &[&str]) -> Vec<Permutation> {
 
     let mut scanners = Vec::new();
 
-    for lines in raw_scanners {
+    for scanner_lines in raw_scanners {
         let mut beacons = Vec::new();
 
-        for line in lines {
+        for line in scanner_lines {
             if !line.starts_with("---") {
                 let beacon = parse_beacon_line(line);
                 println!("Beacon: {:?}", beacon);
@@ -198,7 +198,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_19/input.txt").lines().collect();
 
         let scanners = parse_lines(&lines);
 
@@ -215,13 +215,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_19/example.txt").lines().collect()
     }
     mod part_1 {
 
         use super::get_example;
         use crate::day_19::{Solution, calculate_permutations, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -241,7 +241,7 @@ mod test {
     mod part_2 {
 
         use crate::day_19::Solution;
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

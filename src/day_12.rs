@@ -93,6 +93,7 @@ where
     if cave.is_end() {
         solutions.push(visited);
     } else {
+        #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
         for target_cave in &*cave.targets.borrow() {
             if can_revisit(&visited, target_cave) {
                 let visited_new = visited.clone();
@@ -181,7 +182,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_12/input.txt").lines().collect();
 
         #[expect(clippy::mutable_key_type)]
         let cave_system = build_cave_system(&lines);
@@ -192,7 +193,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_12/input.txt").lines().collect();
 
         #[expect(clippy::mutable_key_type)]
         let cave_system = build_cave_system(&lines);
@@ -206,24 +207,26 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_12/example.txt").lines().collect()
     }
 
     fn get_example_slightly_larger() -> Vec<&'static str> {
-        include_str!("example_slightly_larger.txt")
+        include_str!("day_12/example_slightly_larger.txt")
             .lines()
             .collect()
     }
 
     fn get_example_even_larger() -> Vec<&'static str> {
-        include_str!("example_even_larger.txt").lines().collect()
+        include_str!("day_12/example_even_larger.txt")
+            .lines()
+            .collect()
     }
 
     mod part_1 {
 
         use super::{get_example, get_example_even_larger, get_example_slightly_larger};
         use crate::day_12::{Solution, build_cave_system, calculate_all_paths, can_visit_part_1};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -272,7 +275,7 @@ mod test {
         use super::get_example;
         use crate::day_12::test::{get_example_even_larger, get_example_slightly_larger};
         use crate::day_12::{Solution, build_cave_system, calculate_all_paths, can_visit_part_2};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

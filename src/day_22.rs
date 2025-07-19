@@ -221,7 +221,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_22/input.txt").lines().collect();
 
         let instructions = parse_lines(&lines);
 
@@ -231,7 +231,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_22/input.txt").lines().collect();
 
         let instructions = parse_lines(&lines);
 
@@ -244,22 +244,22 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_22/example.txt").lines().collect()
     }
 
     fn get_larger_example() -> Vec<&'static str> {
-        include_str!("example_larger.txt").lines().collect()
+        include_str!("day_22/example_larger.txt").lines().collect()
     }
 
     fn get_example_part_2() -> Vec<&'static str> {
-        include_str!("example_part_2.txt").lines().collect()
+        include_str!("day_22/example_part_2.txt").lines().collect()
     }
 
     mod part_1 {
         use super::get_example;
         use crate::day_22::test::get_larger_example;
         use crate::day_22::{Instruction, Point, Solution, calculate_on_points_naive, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -395,7 +395,7 @@ mod test {
 
         use crate::day_22::test::get_example_part_2;
         use crate::day_22::{Cuboid, Solution, calculate_on_points, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

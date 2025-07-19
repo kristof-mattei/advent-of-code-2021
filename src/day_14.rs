@@ -10,7 +10,7 @@ fn parse_lines(lines: &[&str]) -> (Vec<char>, HashMap<Key, char>) {
     for line in lines.iter().skip(2) {
         let split = line.split(" -> ").collect::<Vec<_>>();
 
-        let from = (*split.first().unwrap()).to_string();
+        let from = (*split.first().unwrap()).to_owned();
 
         let cc = from.chars().collect::<Vec<char>>();
 
@@ -72,7 +72,7 @@ fn parse_polymer_part_2(
 ) -> HashMap<Key, u64> {
     let mut new_counts = HashMap::new();
 
-    for (key, value) in input.iter().filter(|(_, v)| **v > 0) {
+    for (key, value) in input.iter().filter(|&(_, v)| *v > 0) {
         let c_new = pair_insertion_rules.get(key).unwrap();
 
         let chars_vec = key;
@@ -122,6 +122,7 @@ fn polymer_to_hashmap_part2(
 
     let mut counts = HashMap::new();
 
+    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (key, value) in polymer_groups_set {
         insert_or_add(&mut counts, key.c0, *value);
         insert_or_add(&mut counts, key.c1, *value);
@@ -139,7 +140,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_14/input.txt").lines().collect();
 
         let (mut polymer, pair_insertion_rules) = parse_lines(&lines);
 
@@ -157,7 +158,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_14/input.txt").lines().collect();
 
         let (polymer, pair_insertion_rules) = parse_lines(&lines);
 
@@ -179,7 +180,7 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_14/example.txt").lines().collect()
     }
 
     mod part_1 {
@@ -188,7 +189,7 @@ mod test {
         use crate::day_14::{
             Solution, get_min_and_max_hashmap, parse_lines, parse_polymer, polymer_to_hashmap,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -223,7 +224,7 @@ mod test {
             Solution, get_min_and_max_hashmap, parse_lines, parse_lines_part_2,
             parse_polymer_part_2, polymer_to_hashmap_part2,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

@@ -147,6 +147,7 @@ fn play_quantum(cache: &mut HashMap<Game, Vec<u64>>, game: &Game, until: u32) ->
 
     let next_player = (game.current_player + 1) % game.players.len();
 
+    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (roll_sum, occurence) in &rolls {
         let mut new_game = game.clone();
         new_game.players[game.current_player].r#move(*roll_sum);
@@ -188,7 +189,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_21/input.txt").lines().collect();
 
         let players = parse_lines(&lines);
 
@@ -198,7 +199,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_21/input.txt").lines().collect();
 
         let players = parse_lines(&lines);
 
@@ -211,14 +212,14 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_21/example.txt").lines().collect()
     }
 
     mod part_1 {
 
         use super::get_example;
         use crate::day_21::{Player, Solution, parse_lines, play};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -251,7 +252,7 @@ mod test {
 
         use crate::day_21::test::get_example;
         use crate::day_21::{Game, Solution, parse_lines, play_quantum};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

@@ -16,8 +16,8 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<u32>> {
 fn calculate_risk_level(low_points: &[(usize, usize)], heatmap: &[Vec<u32>]) -> u32 {
     let mut low_point_values: Vec<u32> = Vec::new();
 
-    for (x, y) in low_points {
-        let low_point_value: u32 = heatmap[*y][*x];
+    for &(x, y) in low_points {
+        let low_point_value: u32 = heatmap[y][x];
 
         low_point_values.push(low_point_value);
     }
@@ -30,7 +30,7 @@ fn value_smaller_than_all_neighbors(
     heatmap: &[Vec<u32>],
     neighbors: &HashSet<Coordinates>,
 ) -> bool {
-    neighbors.iter().all(|(x, y)| heatmap[*y][*x] > value)
+    neighbors.iter().all(|&(x, y)| heatmap[y][x] > value)
 }
 
 fn get_low_points(heatmap: &[Vec<u32>]) -> Vec<(usize, usize)> {
@@ -42,7 +42,7 @@ fn get_low_points(heatmap: &[Vec<u32>]) -> Vec<(usize, usize)> {
 
             if value_smaller_than_all_neighbors(*value, heatmap, &neighbors) {
                 let neighbor_values: Vec<u32> =
-                    neighbors.iter().map(|(x, y)| heatmap[*y][*x]).collect();
+                    neighbors.iter().map(|&(x, y)| heatmap[y][x]).collect();
                 println!(
                     "{} is smaller than all values in neighbors ({:?})",
                     *value, neighbor_values
@@ -91,6 +91,7 @@ fn visit_neighbors_that_are_not_nine(
 ) -> HashSet<Coordinates> {
     let neighbors = get_neighbors(heatmap, row_index, column_index);
 
+    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (x, y) in neighbors {
         if heatmap[y][x] != 9 && !visited_neighbors.contains(&(x, y)) {
             // let mut clone = visited_neighbors.clone();
@@ -106,22 +107,22 @@ fn visit_neighbors_that_are_not_nine(
 fn get_basins(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<u32>> {
     let mut basins: Vec<Vec<u32>> = Vec::new();
 
-    for (column_index, row_index) in low_points {
+    for &(column_index, row_index) in low_points {
         let basin_coordinates = visit_neighbors_that_are_not_nine(
             heatmap,
-            *row_index,
-            *column_index,
+            row_index,
+            column_index,
             HashSet::<Coordinates>::new(),
         );
 
         let basin_values = basin_coordinates
             .iter()
-            .map(|(x, y)| heatmap[*y][*x])
+            .map(|&(x, y)| heatmap[y][x])
             .collect();
 
         println!(
             "We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}",
-            heatmap[*row_index][*column_index], column_index, row_index, basin_values
+            heatmap[row_index][column_index], column_index, row_index, basin_values
         );
 
         basins.push(basin_values);
@@ -145,6 +146,7 @@ fn visit_neighbors_that_are_not_nine_2(
 ) {
     let neighbors = get_neighbors(heatmap, row_index, column_index);
 
+    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (x, y) in neighbors {
         if heatmap[y][x].value != 9 && !heatmap[y][x].visisted.get() {
             // let mut clone = visited_neighbors.clone();
@@ -189,16 +191,16 @@ fn get_visisted_values(visisted_heatmap: &[Vec<HeatMapCell>]) -> Vec<u32> {
 fn get_basins_2(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<u32>> {
     let mut basins: Vec<Vec<u32>> = Vec::new();
 
-    for (column_index, row_index) in low_points {
+    for &(column_index, row_index) in low_points {
         let visitable_heatmap = heatmap_u32_heatmap_cell(heatmap);
 
-        visit_neighbors_that_are_not_nine_2(&visitable_heatmap, *row_index, *column_index);
+        visit_neighbors_that_are_not_nine_2(&visitable_heatmap, row_index, column_index);
 
         let basin_values = get_visisted_values(&visitable_heatmap);
 
         println!(
             "We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}",
-            heatmap[*row_index][*column_index], column_index, row_index, basin_values
+            heatmap[row_index][column_index], column_index, row_index, basin_values
         );
 
         basins.push(basin_values);
@@ -221,7 +223,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_09/input.txt").lines().collect();
 
         let heatmap = parse_lines(&lines);
 
@@ -231,7 +233,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_09/input.txt").lines().collect();
 
         let heatmap = parse_lines(&lines);
 
@@ -252,13 +254,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_09/example.txt").lines().collect()
     }
 
     mod part_1 {
         use super::get_example;
         use crate::day_09::{Solution, calculate_risk_level, get_low_points, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -283,7 +285,7 @@ mod test {
         use crate::day_09::{
             Solution, calculate_basin_scores, get_basins, get_basins_2, get_low_points, parse_lines,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

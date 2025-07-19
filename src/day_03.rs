@@ -10,7 +10,7 @@ fn parse_diagnostic_report(diagnostic_report_lines: &[u32], bits_to_consider: us
             });
     }
 
-    let half_amount_of_lines = diagnostic_report_lines.len() as u32 / 2;
+    let half_amount_of_lines = u32::try_from(diagnostic_report_lines.len()).unwrap() / 2;
 
     let mut gamma = 0;
     let mut epsilon = 0;
@@ -41,7 +41,7 @@ fn find_common(lines: &[u32], bit_index: usize, common: &Common) -> usize {
     let count_of_1 = bits.iter().filter(|x| **x == 1).count();
     let count_of_0 = bits.iter().filter(|x| **x == 0).count();
 
-    match common {
+    match *common {
         Common::Least => usize::from(count_of_1 < count_of_0),
         Common::Most => usize::from(count_of_1 >= count_of_0),
     }
@@ -100,7 +100,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_03/input.txt").lines().collect();
 
         let (diagnostic_report_lines, bits_to_consider) = parse_lines(&lines);
 
@@ -110,7 +110,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_03/input.txt").lines().collect();
 
         let (diagnostic_report_lines, bits_to_consider) = parse_lines(&lines);
 
@@ -123,13 +123,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_03/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_03::test::get_example;
         use crate::day_03::{Solution, parse_diagnostic_report, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -151,7 +151,7 @@ mod test {
     mod part_2 {
         use crate::day_03::test::get_example;
         use crate::day_03::{Solution, parse_diagnostic_report_2, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
         #[test]
         fn outcome() {
             assert_eq!((Solution {}).part_2(), PartSolution::U32(4_125_600));

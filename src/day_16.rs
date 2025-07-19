@@ -258,26 +258,26 @@ fn parse_packet_string(packet_string: &str) -> Packet {
 
 fn calculate_version_sum(packet: &Packet) -> u32 {
     u32::from(packet.version)
-        + match &packet.inside {
+        + match packet.inside {
             PacketInside::Literal(_) => 0,
-            PacketInside::Sum(v)
-            | PacketInside::Product(v)
-            | PacketInside::Minimum(v)
-            | PacketInside::Maximum(v)
-            | PacketInside::GreaterThan(v)
-            | PacketInside::LessThanThan(v)
-            | PacketInside::Equal(v) => v.iter().map(calculate_version_sum).sum::<u32>(),
+            PacketInside::Sum(ref v)
+            | PacketInside::Product(ref v)
+            | PacketInside::Minimum(ref v)
+            | PacketInside::Maximum(ref v)
+            | PacketInside::GreaterThan(ref v)
+            | PacketInside::LessThanThan(ref v)
+            | PacketInside::Equal(ref v) => v.iter().map(calculate_version_sum).sum::<u32>(),
         }
 }
 
 fn calculate_deep_packet_value(packet: &Packet) -> u64 {
-    match &packet.inside {
-        PacketInside::Literal(l) => *l,
-        PacketInside::Sum(v) => v.iter().map(calculate_deep_packet_value).sum(),
-        PacketInside::Product(v) => v.iter().map(calculate_deep_packet_value).product(),
-        PacketInside::Minimum(v) => v.iter().map(calculate_deep_packet_value).min().unwrap(),
-        PacketInside::Maximum(v) => v.iter().map(calculate_deep_packet_value).max().unwrap(),
-        PacketInside::GreaterThan(v) => {
+    match packet.inside {
+        PacketInside::Literal(l) => l,
+        PacketInside::Sum(ref v) => v.iter().map(calculate_deep_packet_value).sum(),
+        PacketInside::Product(ref v) => v.iter().map(calculate_deep_packet_value).product(),
+        PacketInside::Minimum(ref v) => v.iter().map(calculate_deep_packet_value).min().unwrap(),
+        PacketInside::Maximum(ref v) => v.iter().map(calculate_deep_packet_value).max().unwrap(),
+        PacketInside::GreaterThan(ref v) => {
             assert_eq!(2, v.len());
 
             let l = calculate_deep_packet_value(&v[0]);
@@ -285,7 +285,7 @@ fn calculate_deep_packet_value(packet: &Packet) -> u64 {
 
             u64::from(l > r)
         },
-        PacketInside::LessThanThan(v) => {
+        PacketInside::LessThanThan(ref v) => {
             assert_eq!(2, v.len());
 
             let l = calculate_deep_packet_value(&v[0]);
@@ -293,7 +293,7 @@ fn calculate_deep_packet_value(packet: &Packet) -> u64 {
 
             u64::from(l < r)
         },
-        PacketInside::Equal(v) => {
+        PacketInside::Equal(ref v) => {
             assert_eq!(2, v.len());
             let l = calculate_deep_packet_value(&v[0]);
             let r = calculate_deep_packet_value(&v[1]);
@@ -307,7 +307,10 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<String> = include_str!("input.txt").lines().map(Into::into).collect();
+        let lines: Vec<String> = include_str!("day_16/input.txt")
+            .lines()
+            .map(Into::into)
+            .collect();
 
         let translated = parse_packet_string(&lines[0]);
 
@@ -315,7 +318,10 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<String> = include_str!("input.txt").lines().map(Into::into).collect();
+        let lines: Vec<String> = include_str!("day_16/input.txt")
+            .lines()
+            .map(Into::into)
+            .collect();
 
         let translated = parse_packet_string(&lines[0]);
 
@@ -332,7 +338,7 @@ mod test {
         use crate::day_16::{
             Packet, PacketInside, Solution, calculate_version_sum, parse_packet_string,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -607,7 +613,7 @@ mod test {
 
     mod part_2 {
         use crate::day_16::{Solution, calculate_deep_packet_value, parse_packet_string};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

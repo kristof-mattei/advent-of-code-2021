@@ -20,9 +20,9 @@ impl Snailfish {
     }
 
     fn fmt_with_depth(&self, depth: u32) -> String {
-        match self {
+        match *self {
             Snailfish::Value(x) => format!("\x1b[{}m{}\x1b[0m", depth + 30, x),
-            Snailfish::Pair((l, r)) => format!(
+            Snailfish::Pair((ref l, ref r)) => format!(
                 "\x1b[{}m[{}\x1b[{}m,{}\x1b[{}m]\x1b[0m",
                 depth + 30,
                 l.fmt_with_depth(depth + 1),
@@ -250,9 +250,9 @@ fn sum_explode_split(input: Vec<Snailfish>) -> Snailfish {
 }
 
 fn calculate_magnitude(snailfish: &Snailfish) -> u32 {
-    match snailfish {
-        Snailfish::Value(x) => *x,
-        Snailfish::Pair((l, r)) => 3 * calculate_magnitude(l) + 2 * calculate_magnitude(r),
+    match *snailfish {
+        Snailfish::Value(x) => x,
+        Snailfish::Pair((ref l, ref r)) => 3 * calculate_magnitude(l) + 2 * calculate_magnitude(r),
     }
 }
 
@@ -287,7 +287,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_18/input.txt").lines().collect();
 
         let snailfish = parse_lines(&lines);
 
@@ -299,7 +299,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_18/input.txt").lines().collect();
 
         let snailfish = parse_lines(&lines);
 
@@ -316,7 +316,7 @@ mod test {
             Snailfish, Solution, calculate_magnitude, explode, parse_lines, parse_snailfish_pair,
             split, sum_explode_split,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -814,7 +814,7 @@ mod test {
         use crate::day_18::{
             Solution, find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

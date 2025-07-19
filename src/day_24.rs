@@ -13,7 +13,7 @@ enum Register {
 
 impl std::fmt::Display for Register {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
+        match *self {
             Register::W => write!(f, "w"),
             Register::X => write!(f, "x"),
             Register::Y => write!(f, "y"),
@@ -28,8 +28,8 @@ enum RegisterOrValue {
 
 impl std::fmt::Display for RegisterOrValue {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            RegisterOrValue::Register(r) => write!(f, "{}", r),
+        match *self {
+            RegisterOrValue::Register(ref r) => write!(f, "{}", r),
             RegisterOrValue::Value(v) => write!(f, "{}", v),
         }
     }
@@ -46,13 +46,13 @@ enum Instruction {
 
 impl std::fmt::Debug for Instruction {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Instruction::Input(r) => write!(f, "inp {}", r),
-            Instruction::Add(r, v) => write!(f, "add {} {}", r, v),
-            Instruction::Mul(r, v) => write!(f, "mul {} {}", r, v),
-            Instruction::Div(r, v) => write!(f, "div {} {}", r, v),
-            Instruction::Mod(r, v) => write!(f, "mod {} {}", r, v),
-            Instruction::Eql(r, v) => write!(f, "eql {} {}", r, v),
+        match *self {
+            Instruction::Input(ref r) => write!(f, "inp {}", r),
+            Instruction::Add(ref r, ref v) => write!(f, "add {} {}", r, v),
+            Instruction::Mul(ref r, ref v) => write!(f, "mul {} {}", r, v),
+            Instruction::Div(ref r, ref v) => write!(f, "div {} {}", r, v),
+            Instruction::Mod(ref r, ref v) => write!(f, "mod {} {}", r, v),
+            Instruction::Eql(ref r, ref v) => write!(f, "eql {} {}", r, v),
         }
     }
 }
@@ -79,7 +79,7 @@ impl<'i> Alu<'i> {
     }
 
     fn get_register(&self, register: &Register) -> i64 {
-        match register {
+        match *register {
             Register::W => self.w.get(),
             Register::X => self.x.get(),
             Register::Y => self.y.get(),
@@ -88,7 +88,7 @@ impl<'i> Alu<'i> {
     }
 
     fn set_register(&self, register: &Register, value: i64) {
-        match register {
+        match *register {
             Register::W => self.w.set(value),
             Register::X => self.x.set(value),
             Register::Y => self.y.set(value),
@@ -97,9 +97,9 @@ impl<'i> Alu<'i> {
     }
 
     fn get_from_register_or_self(&self, registrer_or_value: &RegisterOrValue) -> i64 {
-        match registrer_or_value {
-            RegisterOrValue::Register(r) => self.get_register(r),
-            RegisterOrValue::Value(v) => *v,
+        match *registrer_or_value {
+            RegisterOrValue::Register(ref r) => self.get_register(r),
+            RegisterOrValue::Value(v) => v,
         }
     }
 
@@ -113,42 +113,42 @@ impl<'i> Alu<'i> {
             //     self.z.get()
             // );
             // println!("Processing {:?}", ins);
-            match ins {
-                Instruction::Input(r) => {
+            match *ins {
+                Instruction::Input(ref r) => {
                     let pop = self.input.borrow_mut().pop().unwrap();
                     self.set_register(r, From::from(pop));
                 },
-                Instruction::Add(a, b) => {
+                Instruction::Add(ref a, ref b) => {
                     let a_val = self.get_register(a);
                     let b_val = self.get_from_register_or_self(b);
                     self.set_register(a, a_val + b_val);
                 },
-                Instruction::Mul(a, b) => {
+                Instruction::Mul(ref a, ref b) => {
                     let a_val = self.get_register(a);
                     let b_val = self.get_from_register_or_self(b);
                     self.set_register(a, a_val * b_val);
                 },
-                Instruction::Div(a, b) => {
+                Instruction::Div(ref a, ref b) => {
                     let a_val = self.get_register(a);
                     let b_val = self.get_from_register_or_self(b);
 
                     let result = a_val
                         .checked_div_euclid(b_val)
-                        .ok_or_else(|| "Division by 0".to_string())?;
+                        .ok_or_else(|| "Division by 0".to_owned())?;
 
                     self.set_register(a, result);
                 },
-                Instruction::Mod(a, b) => {
+                Instruction::Mod(ref a, ref b) => {
                     let a_val = self.get_register(a);
                     let b_val = self.get_from_register_or_self(b);
 
                     let result = a_val
                         .checked_rem_euclid(b_val)
-                        .ok_or_else(|| "Division by 0".to_string())?;
+                        .ok_or_else(|| "Division by 0".to_owned())?;
 
                     self.set_register(a, result);
                 },
-                Instruction::Eql(a, b) => {
+                Instruction::Eql(ref a, ref b) => {
                     let a_val = self.get_register(a);
                     let b_val = self.get_from_register_or_self(b);
                     self.set_register(a, i64::from(a_val == b_val));
@@ -256,7 +256,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_24/input.txt").lines().collect();
 
         let instructions = parse_lines(&lines);
 
@@ -266,7 +266,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let _lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let _lines: Vec<&str> = include_str!("day_24/input.txt").lines().collect();
 
         PartSolution::None
     }
@@ -276,7 +276,7 @@ impl Day for Solution {
 mod test {
 
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_24/example.txt").lines().collect()
     }
 
     mod part_1 {
@@ -289,7 +289,7 @@ mod test {
         }
 
         #[test]
-        fn test_number_to_vec() {
+        fn number_to_vec_works() {
             assert_eq!(vec![4, 3, 2, 1], number_to_vec(1234));
         }
 
