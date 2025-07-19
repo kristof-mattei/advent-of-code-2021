@@ -253,7 +253,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_20/input.txt").lines().collect();
 
         let field = parse_lines(&lines);
 
@@ -265,7 +265,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_20/input.txt").lines().collect();
 
         let field = parse_lines(&lines);
 
@@ -280,14 +280,14 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_20/example.txt").lines().collect()
     }
     mod part_1 {
 
         use crate::{
             day_20::{
-                count_lit_pixels, enhance, enhance_times, get_lookup, parse_lines, parse_lookup,
-                to_pixel, Pixel, Solution,
+                Pixel, Solution, count_lit_pixels, enhance, enhance_times, get_lookup, parse_lines,
+                parse_lookup, to_pixel,
             },
             shared::{Day, PartSolution},
         };
@@ -328,7 +328,7 @@ mod test {
         }
 
         #[test]
-        fn test_to_pixel() {
+        fn to_pixel() {
             let pixels = to_pixel("#..#.");
 
             assert_eq!(
@@ -344,14 +344,14 @@ mod test {
         }
 
         #[test]
-        fn test_to_lookup() {
+        fn to_lookup() {
             let lookup = parse_lookup(&to_pixel("...#...#."));
 
             assert_eq!(34, lookup);
         }
 
         #[test]
-        fn test_get_lookup() {
+        fn get_lookup() {
             let example_lines = get_example();
 
             let field = parse_lines(&example_lines);
@@ -369,7 +369,7 @@ mod test {
     mod part_2 {
 
         use crate::{
-            day_20::{count_lit_pixels, enhance_times, parse_lines, test::get_example, Solution},
+            day_20::{Solution, count_lit_pixels, enhance_times, parse_lines, test::get_example},
             shared::{Day, PartSolution},
         };
 

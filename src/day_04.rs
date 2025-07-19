@@ -32,9 +32,7 @@ impl Playfield {
             dont_consider_anymore: Cell::new(false),
         }
     }
-}
 
-impl Playfield {
     fn mark_number(&self, number: u32) {
         for row in &self.inner {
             for c in row {
@@ -88,10 +86,11 @@ impl Playfield {
     }
 
     fn unmarked_sum(&self) -> u32 {
-        self.inner.iter().fold(0, |acc, row| {
-            acc + row
-                .iter()
-                .fold(0, |acc, c| acc + (if c.drawn.get() { 0 } else { c.number }))
+        self.inner.iter().fold(0, |acc_row, row| {
+            acc_row
+                + row
+                    .iter()
+                    .fold(0, |acc, c| acc + (if c.drawn.get() { 0 } else { c.number }))
         })
     }
 }
@@ -188,7 +187,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_04/input.txt").lines().collect();
 
         let (drawings, play_fields) = parse_lines(&lines);
 
@@ -198,7 +197,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_04/input.txt").lines().collect();
 
         let (drawings, play_fields) = parse_lines(&lines);
 
@@ -212,13 +211,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_04/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_04::test::get_example;
         use crate::day_04::{Playfield, PlayfieldCell, Solution, calculate_winnings, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -381,7 +380,7 @@ mod test {
     mod part_2 {
         use crate::day_04::test::get_example;
         use crate::day_04::{Solution, calculate_last_winning_board_2, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

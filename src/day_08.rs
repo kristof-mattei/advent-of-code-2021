@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use std::ops::Sub;
+use std::ops::Sub as _;
 
 use crate::shared::{Day, PartSolution};
 
@@ -16,7 +16,7 @@ fn parse_lines(input: &[&str]) -> Vec<(Vec<LetterCombination>, Vec<LetterCombina
     for line in input {
         let split: Vec<&str> = line.split('|').collect();
 
-        assert_eq!(split.len(), 2);
+        assert_eq!(split.len(), 2, "Bad input");
 
         let left = parse_into_lettercombinations(split.first().unwrap().trim());
 
@@ -33,7 +33,7 @@ type LetterCombination = HashSet<char>;
 fn count_digits_1_4_7_8(lines: &[(Vec<LetterCombination>, Vec<LetterCombination>)]) -> usize {
     let mut digits = Vec::new();
 
-    for (_, right) in lines {
+    for &(_, ref right) in lines {
         for letter in right {
             let number: Option<u32> = match letter.len() {
                 2 => Some(1),
@@ -53,13 +53,13 @@ fn count_digits_1_4_7_8(lines: &[(Vec<LetterCombination>, Vec<LetterCombination>
 }
 
 fn single_piece(input: &HashSet<char>) -> char {
-    assert_eq!(input.len(), 1);
+    assert_eq!(input.len(), 1, "Bad input");
 
     *input.iter().next().unwrap()
 }
 
 fn calculate_signal_patterns(encoded_line: &(Vec<HashSet<char>>, Vec<HashSet<char>>)) -> u32 {
-    let (encoded_key, encoded_solution) = encoded_line;
+    let &(ref encoded_key, ref encoded_solution) = encoded_line;
 
     // these are fixed by length
     let one: &LetterCombination = encoded_key.iter().find(|x| x.len() == 2).unwrap();
@@ -256,7 +256,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_08/input.txt").lines().collect();
 
         let split = parse_lines(&lines);
 
@@ -264,7 +264,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_08/input.txt").lines().collect();
 
         let mut last_4_sum = Vec::new();
 
@@ -283,13 +283,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_08/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_08::test::get_example;
         use crate::day_08::{Solution, count_digits_1_4_7_8, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -309,7 +309,7 @@ mod test {
     mod part_2 {
         use crate::day_08::test::get_example;
         use crate::day_08::{Solution, calculate_signal_patterns, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

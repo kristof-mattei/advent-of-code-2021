@@ -65,10 +65,10 @@ fn calculate_overlap_of_2(vent_lines: &[VentLine]) -> u32 {
     }
 
     for vent_line in vent_lines {
-        for (x, y) in &generate_coordinates_in_between(vent_line) {
-            let val = field[(*y) as usize][(*x) as usize];
+        for &(x, y) in &generate_coordinates_in_between(vent_line) {
+            let val = field[y as usize][x as usize];
 
-            field[(*y) as usize][(*x) as usize] = val + 1;
+            field[y as usize][x as usize] = val + 1;
         }
     }
 
@@ -135,7 +135,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_05/input.txt").lines().collect();
 
         let vent_lines: Vec<VentLine> = parse_lines(&lines, false);
 
@@ -145,7 +145,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_05/input.txt").lines().collect();
 
         let vent_lines: Vec<VentLine> = parse_lines(&lines, true);
 
@@ -158,13 +158,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_05/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_05::test::get_example;
         use crate::day_05::{Solution, VentLine, calculate_overlap_of_2, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -186,7 +186,7 @@ mod test {
     mod part_2 {
         use crate::day_05::test::get_example;
         use crate::day_05::{Solution, VentLine, calculate_overlap_of_2, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

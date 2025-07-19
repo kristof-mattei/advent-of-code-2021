@@ -11,7 +11,7 @@ enum Cucumber {
 
 impl fmt::Display for Cucumber {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
+        match *self {
             Cucumber::East => write!(f, ">"),
             Cucumber::South => write!(f, "v"),
         }
@@ -27,8 +27,8 @@ impl fmt::Display for Board {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for row in &self.cucumbers {
             for maybe_cucumber in row {
-                match maybe_cucumber {
-                    Some(c) => write!(f, "{}", c),
+                match *maybe_cucumber {
+                    Some(ref c) => write!(f, "{}", c),
                     None => write!(f, "."),
                 }?;
             }
@@ -63,7 +63,7 @@ impl Board {
         });
 
         match cucumber {
-            Some(Cucumber::East) => {
+            Some(&Cucumber::East) => {
                 let new_y = (y + 1) % y_dim;
 
                 if self.cucumbers[x][new_y].is_none() && !invalid_targets.contains(&(x, new_y)) {
@@ -75,7 +75,7 @@ impl Board {
                     None
                 }
             },
-            Some(Cucumber::South) => {
+            Some(&Cucumber::South) => {
                 let new_x = (x + 1) % x_dim;
 
                 if self.cucumbers[new_x][y].is_none() && !invalid_targets.contains(&(new_x, y)) {
@@ -154,7 +154,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_25/input.txt").lines().collect();
 
         let mut board = parse_lines(&lines);
 
@@ -164,7 +164,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let _lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let _lines: Vec<&str> = include_str!("day_25/input.txt").lines().collect();
 
         PartSolution::None
     }
@@ -173,11 +173,11 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_smaller_example() -> Vec<&'static str> {
-        include_str!("example_smaller.txt").lines().collect()
+        include_str!("day_25/example_smaller.txt").lines().collect()
     }
 
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_25/example.txt").lines().collect()
     }
 
     mod part_1 {
@@ -186,7 +186,7 @@ mod test {
         use crate::day_25::{
             Board, Cucumber, Solution, move_cucumbers, move_cucumbers_in_direction, parse_lines,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

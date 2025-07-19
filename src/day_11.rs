@@ -99,6 +99,7 @@ fn process_flash(octopus_field: &[Vec<Octopus>], row_index: usize, column_index:
 
         let neighbors = get_neighbors(octopus_field, row_index, column_index);
 
+        #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
         for (neightbor_row_index, neighbor_column_index) in neighbors {
             let neighbor_octopus = &octopus_field[neightbor_row_index][neighbor_column_index];
 
@@ -142,7 +143,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_11/input.txt").lines().collect();
 
         let octopus_field = parse_lines(&lines);
 
@@ -156,7 +157,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_11/input.txt").lines().collect();
 
         let octopus_field = parse_lines(&lines);
         let field_size =
@@ -177,14 +178,14 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_11/example.txt").lines().collect()
     }
 
     mod part_1 {
 
         use super::get_example;
         use crate::day_11::{Octopus, Solution, parse_lines, step};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         fn back_to_vec_string(octopus_field: &[Vec<Octopus>]) -> Vec<String> {
             let mut lines = Vec::new();
@@ -222,14 +223,14 @@ mod test {
 
             let octopus_field = parse_lines(lines);
 
-            let _ = step(&octopus_field);
+            let _: u32 = step(&octopus_field);
 
             assert_eq!(
                 vec!["34543", "40004", "50005", "40004", "34543"],
                 back_to_vec_string(&octopus_field)
             );
 
-            let _ = step(&octopus_field);
+            let _: u32 = step(&octopus_field);
 
             assert_eq!(
                 vec!["45654", "51115", "61116", "51115", "45654",],
@@ -242,7 +243,7 @@ mod test {
 
         use super::get_example;
         use crate::day_11::{Solution, parse_lines, step};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

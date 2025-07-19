@@ -43,12 +43,15 @@ impl Symbol {
 fn calculate_winnings(first_illegal_characters: &[Symbol]) -> u32 {
     first_illegal_characters
         .iter()
-        .map(|x| match x {
+        .map(|x| match *x {
             Symbol::CloseParentese => 3,
             Symbol::CloseBracket => 57,
             Symbol::CloseBrace => 1197,
             Symbol::CloseChevron => 25137,
-            _ => panic!("An open character can never be illegal"),
+            Symbol::OpenParentese
+            | Symbol::OpenBracket
+            | Symbol::OpenBrace
+            | Symbol::OpenChevron => panic!("An open character can never be illegal"),
         })
         .sum()
 }
@@ -100,7 +103,9 @@ fn get_closing_score(symbol: Symbol) -> u64 {
         Symbol::CloseBracket => 2,
         Symbol::CloseBrace => 3,
         Symbol::CloseChevron => 4,
-        _ => panic!("OMG WTF WHY DID YOU GIVE ME OPENING STUFF?"),
+        Symbol::OpenParentese | Symbol::OpenBracket | Symbol::OpenBrace | Symbol::OpenChevron => {
+            panic!("OMG WTF WHY DID YOU GIVE ME OPENING STUFF?")
+        },
     }
 }
 
@@ -119,7 +124,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_10/input.txt").lines().collect();
 
         let into_symbols: Vec<Vec<Symbol>> = parse_lines(&lines);
 
@@ -136,7 +141,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_10/input.txt").lines().collect();
 
         let into_symbols: Vec<Vec<Symbol>> = parse_lines(&lines);
 
@@ -182,7 +187,7 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Symbol>> {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_10/example.txt").lines().collect()
     }
 
     mod part_1 {
@@ -190,7 +195,7 @@ mod test {
         use crate::day_10::{
             Solution, Symbol, calculate_winnings, find_first_illegal_character, parse_lines,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -222,7 +227,7 @@ mod test {
             Solution, Symbol, calculate_completion, calculate_score, find_first_illegal_character,
             parse_lines,
         };
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

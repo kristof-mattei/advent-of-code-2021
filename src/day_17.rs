@@ -175,7 +175,10 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<String> = include_str!("input.txt").lines().map(Into::into).collect();
+        let lines: Vec<String> = include_str!("day_17/input.txt")
+            .lines()
+            .map(Into::into)
+            .collect();
 
         let target = parse_lines(&lines);
 
@@ -185,7 +188,10 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<String> = include_str!("input.txt").lines().map(Into::into).collect();
+        let lines: Vec<String> = include_str!("day_17/input.txt")
+            .lines()
+            .map(Into::into)
+            .collect();
 
         let target = parse_lines(&lines);
 
@@ -202,7 +208,7 @@ mod test {
         use std::cell::Cell;
 
         use crate::day_17::{Probe, Solution, Target, find_max_y};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -373,7 +379,7 @@ mod test {
         }
 
         #[test]
-        fn test_hit_positive_y() {
+        fn hit_positive_y() {
             let probe = Probe {
                 x: Cell::new(5),
                 y: Cell::new(10),
@@ -392,7 +398,7 @@ mod test {
         }
 
         #[test]
-        fn test_hit_positive_negative_y() {
+        fn hit_positive_negative_y() {
             let probe = Probe {
                 x: Cell::new(5),
                 y: Cell::new(0),
@@ -411,7 +417,7 @@ mod test {
         }
 
         #[test]
-        fn test_hit_negative_y() {
+        fn hit_negative_y() {
             let probe = Probe {
                 x: Cell::new(5),
                 y: Cell::new(-10),
@@ -433,7 +439,7 @@ mod test {
     mod part_2 {
 
         use crate::day_17::{Solution, Target, count_hits};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {

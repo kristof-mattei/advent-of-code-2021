@@ -60,7 +60,7 @@ pub struct Solution {}
 
 impl Day for Solution {
     fn part_1(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_06/input.txt").lines().collect();
 
         let mut fishes = parse_lines(&lines);
         for _ in 0..80 {
@@ -71,7 +71,7 @@ impl Day for Solution {
     }
 
     fn part_2(&self) -> PartSolution {
-        let lines: Vec<&str> = include_str!("input.txt").lines().collect();
+        let lines: Vec<&str> = include_str!("day_06/input.txt").lines().collect();
 
         let fishes = parse_lines(&lines);
 
@@ -87,13 +87,13 @@ impl Day for Solution {
 #[cfg(test)]
 mod test {
     fn get_example() -> Vec<&'static str> {
-        include_str!("example.txt").lines().collect()
+        include_str!("day_06/example.txt").lines().collect()
     }
 
     mod part_1 {
         use crate::day_06::test::get_example;
         use crate::day_06::{Solution, age_fishes, parse_lines};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
@@ -131,7 +131,7 @@ mod test {
     mod part_2 {
         use crate::day_06::test::get_example;
         use crate::day_06::{Solution, age_fishes_fast, parse_lines, speed_up_fishes};
-        use crate::shared::{Day, PartSolution};
+        use crate::shared::{Day as _, PartSolution};
 
         #[test]
         fn outcome() {
