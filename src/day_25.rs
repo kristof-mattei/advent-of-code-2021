@@ -121,11 +121,12 @@ fn move_cucumbers_in_direction(board: &mut Board, direction: Cucumber) -> bool {
 
     for x in 0..board.x_dim() {
         for y in 0..board.y_dim() {
-            if !moved.contains(&(x, y)) && board.cucumbers[x][y] == expected {
-                if let Some(r) = board.try_move(x, y, &invalid) {
-                    invalid.insert((x, y));
-                    moved.insert(r);
-                }
+            if !moved.contains(&(x, y))
+                && board.cucumbers[x][y] == expected
+                && let Some(r) = board.try_move(x, y, &invalid)
+            {
+                invalid.insert((x, y));
+                moved.insert(r);
             }
         }
     }

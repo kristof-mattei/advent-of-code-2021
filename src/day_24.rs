@@ -232,11 +232,11 @@ fn find_maximum_version_number(instructions: &[Instruction]) -> u64 {
 
         let alu = Alu::new(instructions, input);
 
-        if let Ok(n) = alu.process() {
-            if n == 0 {
-                println!("{} is a valid number", v);
-                break;
-            }
+        if let Ok(n) = alu.process()
+            && n == 0
+        {
+            println!("{} is a valid number", v);
+            break;
         }
 
         println!(
