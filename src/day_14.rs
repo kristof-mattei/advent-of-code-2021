@@ -131,7 +131,9 @@ fn polymer_to_hashmap_part2(
     insert_or_add(&mut counts, first_char, 1);
     insert_or_add(&mut counts, last_char, 1);
 
-    counts.iter_mut().for_each(|(_, amount)| *amount /= 2);
+    for amount in counts.values_mut() {
+        *amount /= 2;
+    }
 
     counts
 }
