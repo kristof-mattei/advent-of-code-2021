@@ -1,7 +1,6 @@
-#![expect(clippy::cast_possible_truncation)]
-#![expect(clippy::too_many_lines)]
-#![expect(clippy::allow_attributes_without_reason)]
-#![expect(clippy::missing_assert_message)]
+#![expect(clippy::cast_possible_truncation, reason = "Non-production code")]
+#![expect(clippy::missing_assert_message, reason = "Non-production code")]
+#![expect(clippy::too_many_lines, reason = "Non-production code")]
 
 use shared::Day;
 
@@ -33,6 +32,9 @@ mod day_22;
 // mod day_23;
 mod day_24;
 mod day_25;
+
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
 
 fn print_answer(day: u32, part: u32, result: &str) {
     println!("Answer to Day {}, part {} is ... {}", day, part, result);

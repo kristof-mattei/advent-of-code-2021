@@ -12,7 +12,7 @@ struct Permutation {
 }
 
 struct Scanner {
-    #[expect(dead_code)]
+    #[expect(dead_code, reason = "WIP")]
     permutations: Vec<Permutation>,
 }
 

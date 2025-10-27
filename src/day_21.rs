@@ -1,5 +1,4 @@
-use std::collections::HashMap;
-
+use hashbrown::HashMap;
 use regex::Regex;
 
 use crate::shared::{Day, PartSolution};
@@ -147,7 +146,6 @@ fn play_quantum(cache: &mut HashMap<Game, Vec<u64>>, game: &Game, until: u32) ->
 
     let next_player = (game.current_player + 1) % game.players.len();
 
-    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (roll_sum, occurence) in &rolls {
         let mut new_game = game.clone();
         new_game.players[game.current_player].r#move(*roll_sum);
@@ -248,7 +246,7 @@ mod test {
     }
 
     mod part_2 {
-        use std::collections::HashMap;
+        use hashbrown::HashMap;
 
         use crate::day_21::test::get_example;
         use crate::day_21::{Game, Solution, parse_lines, play_quantum};

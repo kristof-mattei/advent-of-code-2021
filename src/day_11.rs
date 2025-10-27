@@ -1,5 +1,6 @@
 use std::cell::Cell;
-use std::collections::HashSet;
+
+use hashbrown::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
@@ -99,7 +100,6 @@ fn process_flash(octopus_field: &[Vec<Octopus>], row_index: usize, column_index:
 
         let neighbors = get_neighbors(octopus_field, row_index, column_index);
 
-        #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
         for (neightbor_row_index, neighbor_column_index) in neighbors {
             let neighbor_octopus = &octopus_field[neightbor_row_index][neighbor_column_index];
 

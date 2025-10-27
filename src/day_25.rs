@@ -1,5 +1,6 @@
 use core::fmt;
-use std::collections::HashSet;
+
+use hashbrown::HashSet;
 
 use crate::shared::{Day, PartSolution};
 

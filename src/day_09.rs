@@ -1,5 +1,6 @@
 use std::cell::Cell;
-use std::collections::HashSet;
+
+use hashbrown::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
@@ -91,7 +92,6 @@ fn visit_neighbors_that_are_not_nine(
 ) -> HashSet<Coordinates> {
     let neighbors = get_neighbors(heatmap, row_index, column_index);
 
-    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (x, y) in neighbors {
         if heatmap[y][x] != 9 && !visited_neighbors.contains(&(x, y)) {
             // let mut clone = visited_neighbors.clone();
@@ -146,7 +146,6 @@ fn visit_neighbors_that_are_not_nine_2(
 ) {
     let neighbors = get_neighbors(heatmap, row_index, column_index);
 
-    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (x, y) in neighbors {
         if heatmap[y][x].value != 9 && !heatmap[y][x].visisted.get() {
             // let mut clone = visited_neighbors.clone();

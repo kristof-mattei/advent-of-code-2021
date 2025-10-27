@@ -1,5 +1,6 @@
 use std::cmp;
-use std::collections::HashMap;
+
+use hashbrown::HashMap;
 
 use crate::shared::{Day, PartSolution};
 
@@ -126,7 +127,7 @@ mod test {
     }
 
     mod part_2 {
-        use std::collections::HashMap;
+        use hashbrown::HashMap;
 
         use crate::day_07::test::get_example;
         use crate::day_07::{Solution, calculate_fuel_needed_2, find_minimum_2, parse_lines};
