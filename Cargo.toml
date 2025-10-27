@@ -13,6 +13,8 @@ include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
 color-eyre = "0.6.5"
+hashbrown = "0.16.0"
+mimalloc = { version = "0.1.48", features = ["v3"] }
 regex = { version = "1.12.2", default-features = false, features = [
     "perf",
     "unicode-perl", # for \d \s \w

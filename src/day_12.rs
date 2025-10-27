@@ -1,3 +1,7 @@
+#![expect(
+    clippy::mutable_key_type,
+    reason = "Name is not modified, and eq & hash depend only on name"
+)]
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
@@ -35,7 +39,6 @@ impl Hash for Cave {
 
 type Caves = HashSet<Rc<Cave>>;
 
-#[expect(clippy::mutable_key_type)]
 fn get_or_insert_cave(caves: &mut Caves, cave_name: &str) -> Rc<Cave> {
     let cave = Rc::new(Cave {
         name: cave_name.to_owned(),
@@ -51,7 +54,6 @@ fn get_or_insert_cave(caves: &mut Caves, cave_name: &str) -> Rc<Cave> {
     }
 }
 
-#[expect(clippy::mutable_key_type)]
 fn add_path(caves: &mut Caves, from: &str, to: &str) {
     let from_cave = get_or_insert_cave(caves, from);
     let to_cave = get_or_insert_cave(caves, to);
@@ -60,9 +62,7 @@ fn add_path(caves: &mut Caves, from: &str, to: &str) {
     to_cave.targets.borrow_mut().insert(from_cave);
 }
 
-#[expect(clippy::mutable_key_type)]
 fn build_cave_system(lines: &[&str]) -> Caves {
-    #[expect(clippy::mutable_key_type)]
     let mut caves: Caves = HashSet::default();
 
     for line in lines {
@@ -110,7 +110,6 @@ where
     solutions
 }
 
-#[expect(clippy::mutable_key_type)]
 fn calculate_all_paths<F>(cave_system: &Caves, can_revisit: F) -> usize
 where
     F: Fn(&[Rc<Cave>], &Rc<Cave>) -> bool,
@@ -148,7 +147,6 @@ fn can_visit_part_1(visited_caves: &[Rc<Cave>], cave: &Rc<Cave>) -> bool {
     }
 }
 
-#[expect(clippy::mutable_key_type)]
 fn can_visit_part_2(visited_caves: &[Rc<Cave>], cave: &Rc<Cave>) -> bool {
     let cave_name = cave.name.clone();
 
@@ -184,7 +182,6 @@ impl Day for Solution {
     fn part_1(&self) -> PartSolution {
         let lines: Vec<&str> = include_str!("day_12/input.txt").lines().collect();
 
-        #[expect(clippy::mutable_key_type)]
         let cave_system = build_cave_system(&lines);
 
         let paths: usize = calculate_all_paths(&cave_system, can_visit_part_1);
@@ -195,7 +192,6 @@ impl Day for Solution {
     fn part_2(&self) -> PartSolution {
         let lines: Vec<&str> = include_str!("day_12/input.txt").lines().collect();
 
-        #[expect(clippy::mutable_key_type)]
         let cave_system = build_cave_system(&lines);
 
         let paths: usize = calculate_all_paths(&cave_system, can_visit_part_2);
@@ -237,7 +233,6 @@ mod test {
         fn example() {
             let lines = get_example();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_1);
@@ -249,7 +244,6 @@ mod test {
         fn example_slightly_larger() {
             let lines = get_example_slightly_larger();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_1);
@@ -261,7 +255,6 @@ mod test {
         fn example_even_larger() {
             let lines = get_example_even_larger();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_1);
@@ -286,7 +279,6 @@ mod test {
         fn example() {
             let lines = get_example();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_2);
@@ -298,7 +290,6 @@ mod test {
         fn example_slightly_larger() {
             let lines = get_example_slightly_larger();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_2);
@@ -310,7 +301,6 @@ mod test {
         fn example_even_larger() {
             let lines = get_example_even_larger();
 
-            #[expect(clippy::mutable_key_type)]
             let cave_system = build_cave_system(&lines);
 
             let paths: usize = calculate_all_paths(&cave_system, can_visit_part_2);

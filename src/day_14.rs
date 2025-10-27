@@ -1,6 +1,7 @@
-use std::collections::HashMap;
 use std::hash::Hash;
 use std::ops::AddAssign;
+
+use hashbrown::HashMap;
 
 use crate::shared::{Day, PartSolution};
 
@@ -122,7 +123,6 @@ fn polymer_to_hashmap_part2(
 
     let mut counts = HashMap::new();
 
-    #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
     for (key, value) in polymer_groups_set {
         insert_or_add(&mut counts, key.c0, *value);
         insert_or_add(&mut counts, key.c1, *value);

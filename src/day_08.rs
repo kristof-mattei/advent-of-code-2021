@@ -1,5 +1,6 @@
-use std::collections::HashSet;
 use std::ops::Sub as _;
+
+use hashbrown::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
