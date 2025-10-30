@@ -122,6 +122,10 @@ fn fold(field: &mut Vec<Vec<Cell<bool>>>, instruction: &Instruction) {
             for r in 0..fold_on_row {
                 let mirrored_row = (fold_on_row * 2) - r;
 
+                #[expect(
+                    clippy::needless_range_loop,
+                    reason = "`c` is being used across multiple rows"
+                )]
                 for c in 0..columns {
                     let cell_value = field[r][c].get();
 
