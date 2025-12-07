@@ -13,7 +13,11 @@ include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
 color-eyre = "0.6.5"
-hashbrown = "0.16.1"
+hashbrown = { version = "0.16.1", default-features = false, features = [
+    "default-hasher",
+    "equivalent",
+    "inline-more",
+] }
 mimalloc = { version = "0.1.48", features = ["v3"] }
 regex = { version = "1.12.2", default-features = false, features = [
     "perf",
