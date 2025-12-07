@@ -1,5 +1,7 @@
 use std::cell::Cell;
-use std::collections::{BinaryHeap, HashMap};
+use std::collections::BinaryHeap;
+
+use hashbrown::HashMap;
 
 use crate::shared::{Day, PartSolution};
 
@@ -112,7 +114,7 @@ fn a_star(field: &mut [Vec<Chiton>], start: Coordinates, goal: Coordinates) -> V
 
     let mut came_from = HashMap::<Coordinates, Coordinates>::new();
 
-    let mut g_score = HashMap::from([(start, 0)]);
+    let mut g_score: HashMap<_, _> = HashMap::from([(start, 0)]);
 
     while let Some(node) = open_set.pop() {
         let coordinates = node.0;

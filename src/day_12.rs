@@ -1,11 +1,8 @@
-#![expect(
-    clippy::mutable_key_type,
-    reason = "Name is not modified, and eq & hash depend only on name"
-)]
 use std::cell::RefCell;
-use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 use std::rc::Rc;
+
+use hashbrown::{HashMap, HashSet};
 
 use crate::shared::{Day, PartSolution};
 
@@ -93,7 +90,6 @@ where
     if cave.is_end() {
         solutions.push(visited);
     } else {
-        #[expect(clippy::iter_over_hash_type, reason = "We don't care about order")]
         for target_cave in &*cave.targets.borrow() {
             if can_revisit(&visited, target_cave) {
                 let visited_new = visited.clone();
