@@ -19,7 +19,7 @@ hashbrown = { version = "0.16.1", default-features = false, features = [
     "inline-more",
 ] }
 mimalloc = { version = "0.1.48", features = ["v3"] }
-regex = { version = "1.12.2", default-features = false, features = [
+regex = { version = "1.12.3", default-features = false, features = [
     "perf",
     "unicode-perl", # for \d \s \w
     "std",
