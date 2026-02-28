@@ -91,7 +91,7 @@ fn heuristic(field: &[Vec<Chiton>], current: Coordinates) -> u32 {
     // // variability and speeds up the algorithm
     // field[current.0][current.1] + field[neighbor.0][neighbor.1]
 
-    ((field.len() - current.0) + (field[0].len() - current.1)) as u32
+    u32::try_from((field.len() - current.0) + (field[0].len() - current.1)).unwrap()
 }
 
 #[derive(PartialEq, Eq)]

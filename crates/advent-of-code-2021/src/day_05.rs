@@ -66,9 +66,9 @@ fn calculate_overlap_of_2(vent_lines: &[VentLine]) -> u32 {
 
     for vent_line in vent_lines {
         for &(x, y) in &generate_coordinates_in_between(vent_line) {
-            let val = field[y as usize][x as usize];
+            let val = field[usize::try_from(y).unwrap()][usize::try_from(x).unwrap()];
 
-            field[y as usize][x as usize] = val + 1;
+            field[usize::try_from(y).unwrap()][usize::try_from(x).unwrap()] = val + 1;
         }
     }
 
@@ -88,7 +88,7 @@ fn calculate_overlap_of_2(vent_lines: &[VentLine]) -> u32 {
         .map(|r| r.iter().filter(|c| **c >= 2).count())
         .sum();
 
-    count_of_over_2 as u32
+    u32::try_from(count_of_over_2).unwrap()
 }
 
 fn generate_coordinates_in_between(vent_line: &VentLine) -> Vec<(u32, u32)> {

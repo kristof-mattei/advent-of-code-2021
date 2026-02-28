@@ -250,10 +250,11 @@ fn decode_solution(key: &[&LetterCombination], encoded_solution: &[&LetterCombin
 
         // now based on the index we need to add it to result
         // letter at index zero is actually the higest
-        result += 10_usize.pow(length as u32 - index as u32) * decoded;
+        result +=
+            10_usize.pow(u32::try_from(length).unwrap() - u32::try_from(index).unwrap()) * decoded;
     }
 
-    result as u32
+    u32::try_from(result).unwrap()
 }
 
 pub struct Solution {}

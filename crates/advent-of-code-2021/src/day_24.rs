@@ -208,7 +208,7 @@ fn number_to_vec(mut input: u64) -> Vec<u32> {
     let mut vec = Vec::new();
 
     while input != 0 {
-        let v = (input % 10) as u32;
+        let v = u32::try_from(input % 10).unwrap();
 
         vec.push(v);
 

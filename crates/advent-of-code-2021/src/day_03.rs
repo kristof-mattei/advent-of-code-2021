@@ -31,7 +31,7 @@ enum Common {
     Most,
 }
 
-fn find_common(lines: &[u32], bit_index: usize, common: &Common) -> usize {
+fn find_common(lines: &[u32], bit_index: usize, common: &Common) -> u32 {
     let mut bits = Vec::new();
 
     for line in lines {
@@ -42,8 +42,8 @@ fn find_common(lines: &[u32], bit_index: usize, common: &Common) -> usize {
     let count_of_0 = bits.iter().filter(|x| **x == 0).count();
 
     match *common {
-        Common::Least => usize::from(count_of_1 < count_of_0),
-        Common::Most => usize::from(count_of_1 >= count_of_0),
+        Common::Least => u32::from(count_of_1 < count_of_0),
+        Common::Most => u32::from(count_of_1 >= count_of_0),
     }
 }
 
@@ -63,7 +63,7 @@ fn move_and_reduce(
         find_common(filtered_lines, bits_to_consider - bit_index - 1, common);
 
     for line in filtered_lines {
-        if ((line >> (bits_to_consider - bit_index - 1)) & 0b01) == most_or_least_common as u32 {
+        if ((line >> (bits_to_consider - bit_index - 1)) & 0b01) == most_or_least_common {
             new_set.push(*line);
         }
     }

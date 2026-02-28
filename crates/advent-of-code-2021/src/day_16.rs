@@ -246,7 +246,7 @@ fn parse_packet(
 fn parse_packet_string(packet_string: &str) -> Packet {
     let mut hex = packet_string
         .chars()
-        .map(|c| c.to_digit(16).unwrap() as u8)
+        .map(|c| u8::try_from(c.to_digit(16).unwrap()).unwrap())
         .collect::<Vec<_>>();
 
     hex.reverse();

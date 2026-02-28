@@ -62,7 +62,7 @@ impl Playfield {
                 }
             }
 
-            if drawn_count == PLAYFIELD_SIZE as u32 {
+            if drawn_count == u32::try_from(PLAYFIELD_SIZE).unwrap() {
                 return true;
             }
         }
@@ -77,7 +77,7 @@ impl Playfield {
                 }
             }
 
-            if drawn_count == PLAYFIELD_SIZE as u32 {
+            if drawn_count == u32::try_from(PLAYFIELD_SIZE).unwrap() {
                 return true;
             }
         }

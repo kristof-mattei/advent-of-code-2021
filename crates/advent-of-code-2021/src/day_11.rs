@@ -13,7 +13,7 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Octopus>> {
     for line in lines {
         field.push(
             line.chars()
-                .map(|x| x.to_digit(10).unwrap() as u8)
+                .map(|x| u8::try_from(x.to_digit(10).unwrap()).unwrap())
                 .map(Cell::new)
                 .collect(),
         );
@@ -168,7 +168,7 @@ impl Day for Solution {
             let flashes = step(&octopus_field);
 
             steps += 1;
-            if flashes == field_size as u32 {
+            if flashes == u32::try_from(field_size).unwrap() {
                 return PartSolution::U32(steps);
             }
         }
@@ -266,7 +266,7 @@ mod test {
                 let flashes = step(&octopus_field);
 
                 steps += 1;
-                if flashes == field_size as u32 {
+                if flashes == u32::try_from(field_size).unwrap() {
                     assert_eq!(steps, 195);
                     break;
                 }

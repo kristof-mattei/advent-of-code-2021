@@ -1,4 +1,3 @@
-#![expect(clippy::cast_possible_truncation, reason = "Non-production code")]
 #![expect(clippy::missing_assert_message, reason = "Non-production code")]
 #![expect(clippy::too_many_lines, reason = "Non-production code")]
 
