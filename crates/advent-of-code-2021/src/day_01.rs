@@ -6,7 +6,7 @@ fn parse_lines(lines: &[&str]) -> Vec<u32> {
 
 pub fn count_increments(list: &[u32]) -> u32 {
     let mut count = 0;
-    for i in list.windows(2) {
+    for i in list.array_windows::<2>() {
         if i[1] > i[0] {
             count += 1;
         }
@@ -19,7 +19,7 @@ pub fn count_window_of_3_increments(list: &[u32]) -> u32 {
     let mut count = 0;
     let mut previous_window: u32 = 0;
 
-    for i in list.windows(3) {
+    for i in list.array_windows::<3>() {
         let current_window: u32 = i.iter().sum();
 
         if current_window > previous_window {

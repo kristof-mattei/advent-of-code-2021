@@ -37,7 +37,7 @@ struct Key {
 fn parse_lines_part_2(input: &[char]) -> HashMap<Key, u64> {
     let mut map = HashMap::new();
 
-    for cc in input.windows(2) {
+    for cc in input.array_windows::<2>() {
         let key = Key {
             c0: cc[0],
             c1: cc[1],
@@ -52,7 +52,7 @@ fn parse_lines_part_2(input: &[char]) -> HashMap<Key, u64> {
 fn parse_polymer(input: &[char], pair_insertion_rules: &HashMap<Key, char>) -> Vec<char> {
     let mut new_string: Vec<char> = vec![input[0]];
 
-    for cc in input.windows(2) {
+    for cc in input.array_windows::<2>() {
         let lookup = Key {
             c0: cc[0],
             c1: cc[1],
