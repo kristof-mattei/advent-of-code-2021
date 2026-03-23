@@ -1,5 +1,5 @@
 [package]
-name = "rust-seed"
+name = "advent-of-code-2021"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
