@@ -43,8 +43,6 @@ fn print_answer(day: u32, part: u32, result: &str) {
 fn main() -> Result<(), color_eyre::Report> {
     color_eyre::install()?;
 
-    let mut day: u32 = 1;
-
     let solutions: Vec<Box<dyn Day>> = vec![
         Box::new(day_01::Solution {}),
         Box::new(day_02::Solution {}),
@@ -73,11 +71,9 @@ fn main() -> Result<(), color_eyre::Report> {
         Box::new(day_25::Solution {}),
     ];
 
-    for solution in solutions {
+    for (day, solution) in (1_u32..).zip(solutions) {
         print_answer(day, 1, &solution.part_1().to_string());
         print_answer(day, 2, &solution.part_2().to_string());
-
-        day += 1;
     }
 
     Ok(())
