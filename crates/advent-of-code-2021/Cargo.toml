@@ -21,7 +21,7 @@ hashbrown = { version = "0.17.0", default-features = false, features = [
     "equivalent",
     "inline-more",
 ] }
-mimalloc = { version = "0.1.49", features = ["v3"] }
+mimalloc = "0.1.49"
 regex = { version = "1.12.3", default-features = false, features = [
     "perf",
     "unicode-perl", # for \d \s \w
