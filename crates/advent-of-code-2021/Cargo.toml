@@ -15,14 +15,14 @@ include.workspace = true
 default = []
 
 [dependencies]
-color-eyre = "0.6.5"
-hashbrown = { version = "0.17.1", default-features = false, features = [
+color-eyre = "=0.6.5"
+hashbrown = { version = "=0.17.1", default-features = false, features = [
     "default-hasher",
     "equivalent",
     "inline-more",
 ] }
-mimalloc = "0.1.52"
-regex = { version = "1.12.4", default-features = false, features = [
+mimalloc = "=0.1.52"
+regex = { version = "=1.12.4", default-features = false, features = [
     "perf",
     "unicode-perl", # for \d \s \w
     "std",
