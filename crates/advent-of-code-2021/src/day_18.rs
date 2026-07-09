@@ -215,7 +215,7 @@ fn sum_explode_split(input: Vec<Snailfish>) -> Snailfish {
                 snailfish_sum = esf.snailfish;
 
                 if esf.exploded {
-                    println!("after explode:  {:?}", &snailfish_sum);
+                    println!("after explode:  {:?}", snailfish_sum);
 
                     // if we had an explosion we have to run again
                     explosion_stable = false;
@@ -233,7 +233,7 @@ fn sum_explode_split(input: Vec<Snailfish>) -> Snailfish {
             snailfish_sum = ssf.snailfish;
 
             if ssf.split {
-                println!("after split:    {:?}", &snailfish_sum);
+                println!("after split:    {:?}", snailfish_sum);
 
                 stable = false;
             }
