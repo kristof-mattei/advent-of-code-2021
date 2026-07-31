@@ -256,7 +256,7 @@ fn calculate_magnitude(snailfish: &Snailfish) -> u32 {
     }
 }
 
-fn find_combination_with_higest_magnitude(
+fn find_combination_with_highest_magnitude(
     snailfish: &[Snailfish],
 ) -> (u32, Snailfish, Snailfish, Snailfish) {
     let mut max = u32::MIN;
@@ -303,7 +303,7 @@ impl Day for Solution {
 
         let snailfish = parse_lines(&lines);
 
-        PartSolution::U32(find_combination_with_higest_magnitude(&snailfish).0)
+        PartSolution::U32(find_combination_with_highest_magnitude(&snailfish).0)
     }
 }
 
@@ -814,7 +814,7 @@ mod test {
         use pretty_assertions::assert_eq;
 
         use crate::day_18::{
-            Solution, find_combination_with_higest_magnitude, parse_lines, parse_snailfish_pair,
+            Solution, find_combination_with_highest_magnitude, parse_lines, parse_snailfish_pair,
         };
         use crate::shared::{Day as _, PartSolution};
 
@@ -858,7 +858,7 @@ mod test {
                 parse_snailfish_pair(&unparsed_expected_right.chars().collect::<Vec<_>>(), 0);
 
             let (magnitude, left, right, result) =
-                find_combination_with_higest_magnitude(&snailfish);
+                find_combination_with_highest_magnitude(&snailfish);
 
             let expected_magnitude = 3993;
 

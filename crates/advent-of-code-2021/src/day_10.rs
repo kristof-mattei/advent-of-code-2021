@@ -2,8 +2,8 @@ use crate::shared::{Day, PartSolution};
 
 #[derive(PartialEq, Copy, Clone, Debug)]
 enum Symbol {
-    OpenParentese,
-    CloseParentese,
+    OpenParentheses,
+    CloseParentheses,
     OpenBracket,
     CloseBracket,
     OpenBrace,
@@ -15,11 +15,11 @@ enum Symbol {
 impl Symbol {
     fn is_open(self) -> bool {
         match self {
-            Symbol::OpenParentese
+            Symbol::OpenParentheses
             | Symbol::OpenBracket
             | Symbol::OpenBrace
             | Symbol::OpenChevron => true,
-            Symbol::CloseParentese
+            Symbol::CloseParentheses
             | Symbol::CloseBracket
             | Symbol::CloseBrace
             | Symbol::CloseChevron => false,
@@ -28,8 +28,8 @@ impl Symbol {
 
     fn get_opposite(self) -> Symbol {
         match self {
-            Symbol::OpenParentese => Symbol::CloseParentese,
-            Symbol::CloseParentese => Symbol::OpenParentese,
+            Symbol::OpenParentheses => Symbol::CloseParentheses,
+            Symbol::CloseParentheses => Symbol::OpenParentheses,
             Symbol::OpenBracket => Symbol::CloseBracket,
             Symbol::CloseBracket => Symbol::OpenBracket,
             Symbol::OpenBrace => Symbol::CloseBrace,
@@ -44,11 +44,11 @@ fn calculate_winnings(first_illegal_characters: &[Symbol]) -> u32 {
     first_illegal_characters
         .iter()
         .map(|x| match *x {
-            Symbol::CloseParentese => 3,
+            Symbol::CloseParentheses => 3,
             Symbol::CloseBracket => 57,
             Symbol::CloseBrace => 1197,
             Symbol::CloseChevron => 25137,
-            Symbol::OpenParentese
+            Symbol::OpenParentheses
             | Symbol::OpenBracket
             | Symbol::OpenBrace
             | Symbol::OpenChevron => panic!("An open character can never be illegal"),
@@ -99,11 +99,11 @@ fn calculate_completion(symbols: &[Symbol]) -> Vec<Symbol> {
 
 fn get_closing_score(symbol: Symbol) -> u64 {
     match symbol {
-        Symbol::CloseParentese => 1,
+        Symbol::CloseParentheses => 1,
         Symbol::CloseBracket => 2,
         Symbol::CloseBrace => 3,
         Symbol::CloseChevron => 4,
-        Symbol::OpenParentese | Symbol::OpenBracket | Symbol::OpenBrace | Symbol::OpenChevron => {
+        Symbol::OpenParentheses | Symbol::OpenBracket | Symbol::OpenBrace | Symbol::OpenChevron => {
             panic!("OMG WTF WHY DID YOU GIVE ME OPENING STUFF?")
         },
     }
@@ -168,8 +168,8 @@ fn parse_lines(lines: &[&str]) -> Vec<Vec<Symbol>> {
         parsed.push(
             line.chars()
                 .map(|x| match x {
-                    '(' => Symbol::OpenParentese,
-                    ')' => Symbol::CloseParentese,
+                    '(' => Symbol::OpenParentheses,
+                    ')' => Symbol::CloseParentheses,
                     '[' => Symbol::OpenBracket,
                     ']' => Symbol::CloseBracket,
                     '{' => Symbol::OpenBrace,

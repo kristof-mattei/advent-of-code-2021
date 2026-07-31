@@ -146,12 +146,12 @@ fn play_quantum(cache: &mut HashMap<Game, Vec<u64>>, game: &Game, until: u32) ->
 
     let next_player = (game.current_player + 1) % game.players.len();
 
-    for (roll_sum, occurence) in &rolls {
+    for (roll_sum, occurrence) in &rolls {
         let mut new_game = game.clone();
         new_game.players[game.current_player].r#move(*roll_sum);
 
         if new_game.players[game.current_player].score >= until {
-            results[game.current_player] += u64::from(*occurence);
+            results[game.current_player] += u64::from(*occurrence);
         } else {
             new_game.current_player = next_player;
 
@@ -176,7 +176,7 @@ fn play_quantum(cache: &mut HashMap<Game, Vec<u64>>, game: &Game, until: u32) ->
             new_game_results
                 .iter()
                 .enumerate()
-                .for_each(|(i, c)| results[i] += c * u64::from(*occurence));
+                .for_each(|(i, c)| results[i] += c * u64::from(*occurrence));
         }
     }
 

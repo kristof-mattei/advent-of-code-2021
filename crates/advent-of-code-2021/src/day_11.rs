@@ -100,8 +100,8 @@ fn process_flash(octopus_field: &[Vec<Octopus>], row_index: usize, column_index:
 
         let neighbors = get_neighbors(octopus_field, row_index, column_index);
 
-        for (neightbor_row_index, neighbor_column_index) in neighbors {
-            let neighbor_octopus = &octopus_field[neightbor_row_index][neighbor_column_index];
+        for (neighbor_row_index, neighbor_column_index) in neighbors {
+            let neighbor_octopus = &octopus_field[neighbor_row_index][neighbor_column_index];
 
             let new_neighbor_energy = match neighbor_octopus.get() {
                 0 => 0, // once flashed, we don't flash until next round
@@ -110,7 +110,7 @@ fn process_flash(octopus_field: &[Vec<Octopus>], row_index: usize, column_index:
 
             neighbor_octopus.set(new_neighbor_energy);
 
-            flashed += process_flash(octopus_field, neightbor_row_index, neighbor_column_index);
+            flashed += process_flash(octopus_field, neighbor_row_index, neighbor_column_index);
         }
 
         flashed += 1;
