@@ -174,7 +174,7 @@ fn enhance(f: Field) -> Field {
 }
 
 fn parse_lines(lines: &[&str]) -> Field {
-    // first line is the algoritm
+    // first line is the algorithm
     let algorithm = to_pixel(lines[0]);
 
     let mut picture = Vec::new();

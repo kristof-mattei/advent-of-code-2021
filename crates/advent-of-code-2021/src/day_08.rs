@@ -5,7 +5,7 @@ use hashbrown::HashSet;
 
 use crate::shared::{Day, PartSolution};
 
-fn parse_into_lettercombinations(line: &str) -> Vec<LetterCombination> {
+fn parse_into_letter_combinations(line: &str) -> Vec<LetterCombination> {
     line.split(' ')
         .filter(|x| *x != "|")
         .map(|f| HashSet::from_iter(f.trim().chars().collect::<LetterCombination>()))
@@ -21,9 +21,9 @@ fn parse_lines(input: &[&str]) -> Vec<(Vec<LetterCombination>, Vec<LetterCombina
 
         assert_eq!(split.len(), 2, "Bad input");
 
-        let left = parse_into_lettercombinations(split.first().unwrap().trim());
+        let left = parse_into_letter_combinations(split.first().unwrap().trim());
 
-        let right = parse_into_lettercombinations(split.get(1).unwrap().trim());
+        let right = parse_into_letter_combinations(split.get(1).unwrap().trim());
 
         into_pieces.push((left, right));
     }
@@ -232,9 +232,9 @@ fn calculate_signal_patterns(encoded_line: &(Vec<HashSet<char>>, Vec<HashSet<cha
         zero, one, &two, &three, four, &five, six, seven, eight, nine,
     ];
 
-    let enso: Vec<&LetterCombination> = encoded_solution.iter().collect();
+    let encoded: Vec<&LetterCombination> = encoded_solution.iter().collect();
 
-    decode_solution(&decoded_key, &enso)
+    decode_solution(&decoded_key, &encoded)
 }
 
 fn decode_solution(key: &[&LetterCombination], encoded_solution: &[&LetterCombination]) -> u32 {
@@ -249,7 +249,7 @@ fn decode_solution(key: &[&LetterCombination], encoded_solution: &[&LetterCombin
         };
 
         // now based on the index we need to add it to result
-        // letter at index zero is actually the higest
+        // letter at index zero is actually the highest
         result += 10_usize.pow(length as u32 - index as u32) * decoded;
     }
 

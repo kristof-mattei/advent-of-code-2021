@@ -81,14 +81,14 @@ fn reconstruct_path(
 }
 
 fn distance(field: &[Vec<Chiton>], current: Coordinates, neighbor: Coordinates) -> u32 {
-    // // intially I only had the neighbor's value here, but adding the current value increases
-    // // variability and speeds up the algorithm
+    // initially I only had the neighbor's value here, but adding the current value increases
+    // variability and speeds up the algorithm
     field[current.0][current.1].0 + field[neighbor.0][neighbor.1].0
 }
 
 fn heuristic(field: &[Vec<Chiton>], current: Coordinates) -> u32 {
-    // // intially I only had the neighbor's value here, but adding the current value increases
-    // // variability and speeds up the algorithm
+    // initially I only had the neighbor's value here, but adding the current value increases
+    // variability and speeds up the algorithm
     // field[current.0][current.1] + field[neighbor.0][neighbor.1]
 
     ((field.len() - current.0) + (field[0].len() - current.1)) as u32
@@ -136,9 +136,9 @@ fn a_star(field: &mut [Vec<Chiton>], start: Coordinates, goal: Coordinates) -> V
 
                 g_score.insert(neighbor, tentative_g_score);
 
-                let g_score_with_heurisitc = tentative_g_score + heuristic(field, neighbor);
+                let g_score_with_heuristic = tentative_g_score + heuristic(field, neighbor);
 
-                open_set.push(Node(neighbor, g_score_with_heurisitc));
+                open_set.push(Node(neighbor, g_score_with_heuristic));
             }
         }
     }

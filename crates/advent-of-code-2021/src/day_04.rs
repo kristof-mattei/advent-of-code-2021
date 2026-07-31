@@ -22,14 +22,14 @@ impl PlayfieldCell {
 #[derive(PartialEq, Debug)]
 struct Playfield {
     inner: [[PlayfieldCell; PLAYFIELD_SIZE]; PLAYFIELD_SIZE],
-    dont_consider_anymore: Cell<bool>,
+    don_t_consider_anymore: Cell<bool>,
 }
 
 impl Playfield {
     fn new(playfield: [[PlayfieldCell; PLAYFIELD_SIZE]; PLAYFIELD_SIZE]) -> Playfield {
         Playfield {
             inner: playfield,
-            dont_consider_anymore: Cell::new(false),
+            don_t_consider_anymore: Cell::new(false),
         }
     }
 
@@ -115,7 +115,7 @@ fn calculate_last_winning_board_2(drawings: &[u32], playfields: &[Playfield]) ->
 
     for drawing in drawings {
         for playfield in playfields {
-            if playfield.dont_consider_anymore.get() {
+            if playfield.don_t_consider_anymore.get() {
                 continue;
             }
 
@@ -124,7 +124,7 @@ fn calculate_last_winning_board_2(drawings: &[u32], playfields: &[Playfield]) ->
             if playfield.is_winner() {
                 last_winning_board_unmarked = playfield.unmarked_sum();
                 last_drawing = *drawing;
-                playfield.dont_consider_anymore.set(true);
+                playfield.don_t_consider_anymore.set(true);
             }
         }
     }

@@ -96,8 +96,8 @@ impl<'i> Alu<'i> {
         }
     }
 
-    fn get_from_register_or_self(&self, registrer_or_value: &RegisterOrValue) -> i64 {
-        match *registrer_or_value {
+    fn get_from_register_or_self(&self, register_or_value: &RegisterOrValue) -> i64 {
+        match *register_or_value {
             RegisterOrValue::Register(ref r) => self.get_register(r),
             RegisterOrValue::Value(v) => v,
         }

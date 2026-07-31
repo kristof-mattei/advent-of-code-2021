@@ -136,7 +136,7 @@ fn get_basins(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<u3
 #[derive(Default)]
 struct HeatMapCell {
     value: u32,
-    visisted: Cell<bool>,
+    visited: Cell<bool>,
 }
 
 fn visit_neighbors_that_are_not_nine_2(
@@ -147,9 +147,9 @@ fn visit_neighbors_that_are_not_nine_2(
     let neighbors = get_neighbors(heatmap, row_index, column_index);
 
     for (x, y) in neighbors {
-        if heatmap[y][x].value != 9 && !heatmap[y][x].visisted.get() {
+        if heatmap[y][x].value != 9 && !heatmap[y][x].visited.get() {
             // let mut clone = visited_neighbors.clone();
-            heatmap[y][x].visisted.set(true);
+            heatmap[y][x].visited.set(true);
 
             visit_neighbors_that_are_not_nine_2(heatmap, y, x);
         }
@@ -173,12 +173,12 @@ fn heatmap_u32_heatmap_cell(heatmap: &[Vec<u32>]) -> Vec<Vec<HeatMapCell>> {
     new_heatmap
 }
 
-fn get_visisted_values(visisted_heatmap: &[Vec<HeatMapCell>]) -> Vec<u32> {
+fn get_visited_values(visited_heatmap: &[Vec<HeatMapCell>]) -> Vec<u32> {
     let mut visited_values = Vec::new();
 
-    for line in visisted_heatmap {
+    for line in visited_heatmap {
         for cell in line {
-            if cell.visisted.get() {
+            if cell.visited.get() {
                 visited_values.push(cell.value);
             }
         }
@@ -195,7 +195,7 @@ fn get_basins_2(heatmap: &[Vec<u32>], low_points: &[(usize, usize)]) -> Vec<Vec<
 
         visit_neighbors_that_are_not_nine_2(&visitable_heatmap, row_index, column_index);
 
-        let basin_values = get_visisted_values(&visitable_heatmap);
+        let basin_values = get_visited_values(&visitable_heatmap);
 
         println!(
             "We started with low point {} at x: {}, y: {} and got a set of neighbors with values {:?}",
