@@ -3,9 +3,9 @@ appgroup
 appuser
 bkeepers
 buildcache
-Cinstrument
+cinstrument
 cocogitto
-Ctarget
+ctarget
 cttc
 cves
 dorny
@@ -30,8 +30,9 @@ playfields
 postprocessors
 prereleased
 profraw
-Retag
-Retagging
+pyflakes
+retag
+retagging
 rustflags
 samply
 sccache
@@ -41,9 +42,9 @@ striptags
 SUBPACKET
 swellaby
 taiki
-TARGETPLATFORMDASH
+targetplatformdash
 telem
-Tera
+tera
 topo
 trixie
 uninlined
