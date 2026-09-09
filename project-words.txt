@@ -21,6 +21,7 @@ mimalloc
 monomorphization
 multiplatform
 nextest
+oras
 pathbuf
 playfield
 playfields
