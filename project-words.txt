@@ -25,6 +25,7 @@ multiplatform
 nextest
 oras
 pathbuf
+pkgs
 playfield
 playfields
 postprocessors
@@ -50,6 +51,7 @@ targetplatformdash
 telem
 tera
 topo
+tostring
 trixie
 trunc
 uninlined
