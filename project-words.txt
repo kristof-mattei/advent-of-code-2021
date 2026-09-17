@@ -8,7 +8,6 @@ cinstrument
 cliffignore
 ctarget
 cttc
-cves
 dorny
 endfor
 endmacro
@@ -29,7 +28,6 @@ pkgs
 playfield
 playfields
 postprocessors
-prereleased
 profraw
 pyflakes
 rawfile
